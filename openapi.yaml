@@ -1,0 +1,209 @@
+openapi: 3.0.0
+paths:
+  /health:
+    get:
+      operationId: AppController_health
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - App
+  /api/v1/impact/analyze:
+    post:
+      operationId: ImpactController_analyze
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      tags:
+      - Impact
+  /api/v1/impact/jobs:
+    post:
+      operationId: ImpactController_createJob
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      tags:
+      - Impact
+    get:
+      operationId: JobsController_list
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Jobs
+  /api/v1/impact/search:
+    get:
+      operationId: ImpactController_search
+      parameters:
+      - name: q
+        required: true
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Impact
+  /api/v1/impact/jobs/{jobId}:
+    get:
+      operationId: JobsController_get
+      parameters:
+      - name: jobId
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Jobs
+  /api/v1/impact/jobs/{jobId}/result:
+    get:
+      operationId: JobsController_getResult
+      parameters:
+      - name: jobId
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Jobs
+  /api/v1/services:
+    get:
+      operationId: ServicesController_list
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Services
+  /api/v1/services/{id}:
+    get:
+      operationId: ServicesController_getById
+      parameters:
+      - name: id
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Services
+  /api/v1/services/{id}/dependencies:
+    get:
+      operationId: ServicesController_getDependencies
+      parameters:
+      - name: id
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Services
+  /api/v1/services/{id}/impact-path:
+    get:
+      operationId: ServicesController_getImpactPath
+      parameters:
+      - name: id
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Services
+  /api/v1/mermaid/service/{id}:
+    get:
+      operationId: MermaidController_serviceArchitecture
+      parameters:
+      - name: id
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Mermaid
+  /api/v1/mermaid/dependencies/{id}:
+    get:
+      operationId: MermaidController_dependencies
+      parameters:
+      - name: id
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Mermaid
+  /api/v1/mermaid/search:
+    get:
+      operationId: MermaidController_search
+      parameters:
+      - name: q
+        required: true
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Mermaid
+  /api/v1/mermaid/analyze:
+    post:
+      operationId: MermaidController_analyze
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      tags:
+      - Mermaid
+  /api/v1/mermaid/explore:
+    get:
+      operationId: MermaidController_explore
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Mermaid
+info:
+  title: MASAR Impact Analysis API
+  description: API for impact analysis of MASAR government services. Includes service
+    graph traversal, async job processing, and Mermaid diagram generation.
+  version: 1.0.0
+  contact: {}
+tags: []
+servers:
+- url: https://myapi.businessanalystcrew.org
+  description: Production
+- url: http://localhost:3000
+  description: Local
+components:
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+  schemas: {}

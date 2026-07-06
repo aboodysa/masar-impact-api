@@ -1,0 +1,558 @@
+{
+  "info": {
+    "name": "MASAR Impact Analysis API",
+    "description": "API for impact analysis of MASAR government services. Includes service graph traversal, async job processing, and Mermaid diagram generation.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://myapi.businessanalystcrew.org",
+      "type": "string"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{authToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "item": [
+    {
+      "name": "Health",
+      "item": [
+        {
+          "name": "Get Health",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{authToken}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/health",
+              "host": ["{{baseUrl}}"],
+              "path": ["health"]
+            },
+            "description": "Health check endpoint"
+          },
+          "response": [
+            {
+              "name": "Success",
+              "status": "OK",
+              "code": 200,
+              "header": [
+                { "key": "Content-Type", "value": "application/json" }
+              ],
+              "body": "{\n  \"status\": \"ok\",\n  \"timestamp\": \"2026-01-01T00:00:00.000Z\"\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Services",
+      "item": [
+        {
+          "name": "List Services",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{authToken}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/services",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "services"]
+            },
+            "description": "List all services"
+          },
+          "response": [
+            {
+              "name": "Success",
+              "status": "OK",
+              "code": 200,
+              "header": [
+                { "key": "Content-Type", "value": "application/json" }
+              ],
+              "body": "[\n  {\n    \"id\": \"svc-001\",\n    \"name\": \"Service A\",\n    \"description\": \"Description of Service A\"\n  }\n]"
+            }
+          ]
+        },
+        {
+          "name": "Get Service by ID",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{authToken}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/services/{{serviceId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "services", "{{serviceId}}"],
+              "variable": [
+                {
+                  "key": "serviceId",
+                  "value": "svc-001",
+                  "description": "ID of the service"
+                }
+              ]
+            },
+            "description": "Get a service by its ID"
+          },
+          "response": [
+            {
+              "name": "Success",
+              "status": "OK",
+              "code": 200,
+              "header": [
+                { "key": "Content-Type", "value": "application/json" }
+              ],
+              "body": "{\n  \"id\": \"svc-001\",\n  \"name\": \"Service A\",\n  \"description\": \"Description of Service A\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get Service Dependencies",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{authToken}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/services/{{serviceId}}/dependencies",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "services", "{{serviceId}}", "dependencies"],
+              "variable": [
+                {
+                  "key": "serviceId",
+                  "value": "svc-001",
+                  "description": "ID of the service"
+                }
+              ]
+            },
+            "description": "Get dependencies for a specific service"
+          },
+          "response": [
+            {
+              "name": "Success",
+              "status": "OK",
+              "code": 200,
+              "header": [
+                { "key": "Content-Type", "value": "application/json" }
+              ],
+              "body": "{\n  \"serviceId\": \"svc-001\",\n  \"dependencies\": [\n    {\n      \"id\": \"svc-002\",\n      \"name\": \"Service B\",\n      \"type\": \"hard\"\n    }\n  ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get Service Impact Path",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{authToken}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/services/{{serviceId}}/impact-path",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "services", "{{serviceId}}", "impact-path"],
+              "variable": [
+                {
+                  "key": "serviceId",
+                  "value": "svc-001",
+                  "description": "ID of the service"
+                }
+              ]
+            },
+            "description": "Get the impact propagation path for a service"
+          },
+          "response": [
+            {
+              "name": "Success",
+              "status": "OK",
+              "code": 200,
+              "header": [
+                { "key": "Content-Type", "value": "application/json" }
+              ],
+              "body": "{\n  \"serviceId\": \"svc-001\",\n  \"impactPath\": [\n    {\n      \"serviceId\": \"svc-003\",\n      \"serviceName\": \"Service C\",\n      \"impactLevel\": \"high\"\n    }\n  ]\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Impact Analysis",
+      "item": [
+        {
+          "name": "Analyze Impact",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{authToken}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/impact/analyze",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "impact", "analyze"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"serviceId\": \"svc-001\",\n  \"changeType\": \"modification\",\n  \"description\": \"Updating service endpoint\"\n}"
+            },
+            "description": "Trigger an impact analysis for a given service change"
+          },
+          "response": [
+            {
+              "name": "Created",
+              "status": "Created",
+              "code": 201,
+              "header": [
+                { "key": "Content-Type", "value": "application/json" }
+              ],
+              "body": "{\n  \"jobId\": \"job-abc123\",\n  \"status\": \"queued\",\n  \"message\": \"Impact analysis job created successfully\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Create Impact Job",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{authToken}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/impact/jobs",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "impact", "jobs"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"type\": \"impact-analysis\",\n  \"payload\": {\n    \"serviceIds\": [\"svc-001\", \"svc-002\"],\n    \"depth\": 3\n  }\n}"
+            },
+            "description": "Create a new impact analysis job"
+          },
+          "response": [
+            {
+              "name": "Created",
+              "status": "Created",
+              "code": 201,
+              "header": [
+                { "key": "Content-Type", "value": "application/json" }
+              ],
+              "body": "{\n  \"jobId\": \"job-abc123\",\n  \"status\": \"queued\",\n  \"createdAt\": \"2026-01-01T00:00:00.000Z\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Search Impact",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{authToken}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/impact/search?q={{query}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "impact", "search"],
+              "query": [
+                {
+                  "key": "q",
+                  "value": "service outage",
+                  "description": "Search query string"
+                }
+              ]
+            },
+            "description": "Search across impact analyses"
+          },
+          "response": [
+            {
+              "name": "Success",
+              "status": "OK",
+              "code": 200,
+              "header": [
+                { "key": "Content-Type", "value": "application/json" }
+              ],
+              "body": "{\n  \"results\": [\n    {\n      \"id\": \"job-abc123\",\n      \"type\": \"impact-analysis\",\n      \"summary\": \"Impact analysis for service outage\"\n    }\n  ],\n  \"total\": 1\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Jobs",
+      "item": [
+        {
+          "name": "List Jobs",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{authToken}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/impact/jobs",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "impact", "jobs"]
+            },
+            "description": "List all impact analysis jobs"
+          },
+          "response": [
+            {
+              "name": "Success",
+              "status": "OK",
+              "code": 200,
+              "header": [
+                { "key": "Content-Type", "value": "application/json" }
+              ],
+              "body": "[\n  {\n    \"jobId\": \"job-abc123\",\n    \"status\": \"completed\",\n    \"type\": \"impact-analysis\",\n    \"createdAt\": \"2026-01-01T00:00:00.000Z\"\n  }\n]"
+            }
+          ]
+        },
+        {
+          "name": "Get Job Details",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{authToken}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/impact/jobs/{{jobId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "impact", "jobs", "{{jobId}}"],
+              "variable": [
+                {
+                  "key": "jobId",
+                  "value": "job-abc123",
+                  "description": "ID of the job"
+                }
+              ]
+            },
+            "description": "Get details of a specific job"
+          },
+          "response": [
+            {
+              "name": "Success",
+              "status": "OK",
+              "code": 200,
+              "header": [
+                { "key": "Content-Type", "value": "application/json" }
+              ],
+              "body": "{\n  \"jobId\": \"job-abc123\",\n  \"status\": \"completed\",\n  \"type\": \"impact-analysis\",\n  \"progress\": 100,\n  \"createdAt\": \"2026-01-01T00:00:00.000Z\",\n  \"completedAt\": \"2026-01-01T00:01:00.000Z\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get Job Result",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{authToken}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/impact/jobs/{{jobId}}/result",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "impact", "jobs", "{{jobId}}", "result"],
+              "variable": [
+                {
+                  "key": "jobId",
+                  "value": "job-abc123",
+                  "description": "ID of the completed job"
+                }
+              ]
+            },
+            "description": "Get the result of a completed job"
+          },
+          "response": [
+            {
+              "name": "Success",
+              "status": "OK",
+              "code": 200,
+              "header": [
+                { "key": "Content-Type", "value": "application/json" }
+              ],
+              "body": "{\n  \"jobId\": \"job-abc123\",\n  \"status\": \"completed\",\n  \"result\": {\n    \"affectedServices\": [\"svc-002\", \"svc-003\"],\n    \"impactLevel\": \"medium\",\n    \"recommendations\": [\"Notify team A\", \"Schedule maintenance window\"]\n  }\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Mermaid Diagrams",
+      "item": [
+        {
+          "name": "Get Service Architecture Diagram",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{authToken}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/mermaid/service/{{serviceId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "mermaid", "service", "{{serviceId}}"],
+              "variable": [
+                {
+                  "key": "serviceId",
+                  "value": "svc-001",
+                  "description": "ID of the service"
+                }
+              ]
+            },
+            "description": "Generate a Mermaid architecture diagram for a service"
+          },
+          "response": [
+            {
+              "name": "Success",
+              "status": "OK",
+              "code": 200,
+              "header": [
+                { "key": "Content-Type", "value": "text/plain" }
+              ],
+              "body": "graph TD\n  A[Service A] --> B[Service B]\n  A --> C[Service C]"
+            }
+          ]
+        },
+        {
+          "name": "Get Dependencies Diagram",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{authToken}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/mermaid/dependencies/{{serviceId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "mermaid", "dependencies", "{{serviceId}}"],
+              "variable": [
+                {
+                  "key": "serviceId",
+                  "value": "svc-001",
+                  "description": "ID of the service"
+                }
+              ]
+            },
+            "description": "Generate a Mermaid dependencies diagram for a service"
+          },
+          "response": [
+            {
+              "name": "Success",
+              "status": "OK",
+              "code": 200,
+              "header": [
+                { "key": "Content-Type", "value": "text/plain" }
+              ],
+              "body": "graph LR\n  A[Service A] -->|depends on| D[Database]\n  A -->|depends on| E[External API]"
+            }
+          ]
+        },
+        {
+          "name": "Search Mermaid Diagrams",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{authToken}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/mermaid/search?q={{query}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "mermaid", "search"],
+              "query": [
+                {
+                  "key": "q",
+                  "value": "architecture",
+                  "description": "Search query for diagrams"
+                }
+              ]
+            },
+            "description": "Search across generated Mermaid diagrams"
+          },
+          "response": [
+            {
+              "name": "Success",
+              "status": "OK",
+              "code": 200,
+              "header": [
+                { "key": "Content-Type", "value": "application/json" }
+              ],
+              "body": "{\n  \"results\": [\n    {\n      \"id\": \"dgm-001\",\n      \"serviceId\": \"svc-001\",\n      \"type\": \"architecture\",\n      \"preview\": \"graph TD...\"\n    }\n  ],\n  \"total\": 1\n}"
+            }
+          ]
+        },
+        {
+          "name": "Analyze Mermaid Diagram",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{authToken}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/mermaid/analyze",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "mermaid", "analyze"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"serviceId\": \"svc-001\",\n  \"diagramType\": \"dependencies\",\n  \"includeDetails\": true\n}"
+            },
+            "description": "Analyze a service and generate a Mermaid diagram"
+          },
+          "response": [
+            {
+              "name": "Created",
+              "status": "Created",
+              "code": 201,
+              "header": [
+                { "key": "Content-Type", "value": "application/json" }
+              ],
+              "body": "{\n  \"jobId\": \"job-mermaid-001\",\n  \"status\": \"processing\",\n  \"message\": \"Mermaid diagram generation started\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Explore Mermaid Diagrams",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{authToken}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/mermaid/explore",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "mermaid", "explore"]
+            },
+            "description": "Explore available Mermaid diagrams and templates"
+          },
+          "response": [
+            {
+              "name": "Success",
+              "status": "OK",
+              "code": 200,
+              "header": [
+                { "key": "Content-Type", "value": "application/json" }
+              ],
+              "body": "{\n  \"templates\": [\"architecture\", \"dependencies\", \"impact-flow\"],\n  \"recentDiagrams\": [\n    {\n      \"id\": \"dgm-001\",\n      \"serviceId\": \"svc-001\",\n      \"type\": \"architecture\"\n    }\n  ]\n}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
