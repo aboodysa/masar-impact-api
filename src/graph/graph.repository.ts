@@ -16,7 +16,7 @@ export class GraphRepository implements OnModuleInit {
   private graphDir: string;
 
   constructor() {
-    this.graphDir = process.env.GRAPH_DIR || join(__dirname, '../../../output/v0.2');
+    this.graphDir = process.env.GRAPH_DIR || join(__dirname, '../../../data/v0.2');
   }
 
   async onModuleInit() {

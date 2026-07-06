@@ -1,0 +1,40 @@
+{
+  "title": "تعديل شاشة إنهاء التعاقد - إضافة إدخال يدوي لفئة الوظيفة والمسمى الوظيفي",
+  "description": "تعديل شاشة إنهاء التعاقد بحيث تقبل الإدخال اليدوي لفئة الوظيفة والمسمى الوظيفي مع عرض آخر تحديث بيانات بحسب صرف",
+  "targets": [
+    {
+      "id": "screen:wafed:contract-termination",
+      "name_ar": "شاشة إنهاء التعاقد",
+      "type": "Screen"
+    },
+    {
+      "id": "df:job-category",
+      "name_ar": "فئة الوظيفة",
+      "type": "DataField"
+    },
+    {
+      "id": "df:job-title",
+      "name_ar": "المسمى الوظيفي",
+      "type": "DataField"
+    },
+    {
+      "id": "df:last-update-from-sarf",
+      "name_ar": "آخر تحديث بيانات من صرف",
+      "type": "DataField"
+    }
+  ],
+  "change_details": {
+    "sf:termination:job-category": {
+      "field_mode_from": "READ_ONLY",
+      "field_mode_to": "MANUAL_INPUT"
+    },
+    "sf:termination:job-title": {
+      "field_mode_from": "READ_ONLY",
+      "field_mode_to": "MANUAL_INPUT"
+    },
+    "sf:termination:last-update-from-sarf": {
+      "action": "new_display_field",
+      "source": "ext:sarf via int:jics:sarf"
+    }
+  }
+}
