@@ -79,12 +79,20 @@ export class GraphRepository implements OnModuleInit {
     return this.nodes.get(id);
   }
 
+  getAllNodes(): GraphNode[] {
+    return [...this.nodes.values()];
+  }
+
   getNodesByType(type: string): GraphNode[] {
     return this.nodesByType.get(type) || [];
   }
 
   getEdge(id: string): GraphEdge | undefined {
     return this.edges.get(id);
+  }
+
+  getAllEdges(): GraphEdge[] {
+    return [...this.edges.values()];
   }
 
   getOutgoing(id: string, type?: string): GraphEdge[] {
