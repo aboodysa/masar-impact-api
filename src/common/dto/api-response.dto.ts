@@ -13,7 +13,12 @@ export class ApiError {
   @ApiProperty({ example: 'Not Found' }) error: string;
 }
 
-export class PaginatedResponse<T> {
-  data: T[];
-  @ApiProperty() meta: PaginationMeta;
+export function paginate<T>(items: T[], page: number, limit: number) {
+  const safePage = Math.max(1, page);
+  const safeLimit = Math.min(Math.max(1, limit), 100);
+  const total = items.length;
+  const totalPages = Math.ceil(total / safeLimit);
+  const start = (safePage - 1) * safeLimit;
+  const data = items.slice(start, start + safeLimit);
+  return { data, meta: { page: safePage, limit: safeLimit, total, totalPages } };
 }

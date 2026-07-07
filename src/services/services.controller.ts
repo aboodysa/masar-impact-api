@@ -1,6 +1,7 @@
-import { Controller, Get, Param, Header } from '@nestjs/common';
-import { ApiTags, ApiOperation, ApiParam, ApiResponse, ApiBearerAuth } from '@nestjs/swagger';
+import { Controller, Get, Param, Header, Query } from '@nestjs/common';
+import { ApiTags, ApiOperation, ApiParam, ApiQuery, ApiResponse, ApiBearerAuth } from '@nestjs/swagger';
 import { GraphRepository } from '../graph/graph.repository';
+import { paginate } from '../common/dto/api-response.dto';
 import {
   ServiceListResponse,
   ServiceDetailResponse,
@@ -108,21 +109,22 @@ export class ServicesController {
 
   @Get()
   @ApiOperation({ summary: 'List all services' })
+  @ApiQuery({ name: 'page', required: false, example: 1, description: 'Page number' })
+  @ApiQuery({ name: 'limit', required: false, example: 20, description: 'Items per page (max 100)' })
   @ApiResponse({ status: 200, type: ServiceListResponse })
-  list() {
+  list(@Query('page') page = 1, @Query('limit') limit = 50) {
     const services = this.graph.getNodesByType('Service');
-    return {
-      count: services.length,
-      services: services.map(s => ({
-        id: s.id,
-        name_ar: (s as any).canonical_name_ar,
-        name_en: (s as any).canonical_name_en,
-        description: (s as any).description || null,
-        domain: (s as any).service_domain,
-        maturity: (s as any).maturity_level,
-        impact_readiness: (s as any).impact_readiness,
-      })),
-    };
+    const mapped = services.map(s => ({
+      id: s.id,
+      name_ar: (s as any).canonical_name_ar,
+      name_en: (s as any).canonical_name_en,
+      description: (s as any).description || null,
+      domain: (s as any).service_domain,
+      maturity: (s as any).maturity_level,
+      impact_readiness: (s as any).impact_readiness,
+    }));
+    const { data, meta } = paginate(mapped, +page, +limit);
+    return { ...meta, services: data };
   }
 
   @Get(':id')

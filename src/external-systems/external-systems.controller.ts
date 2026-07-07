@@ -1,6 +1,7 @@
-import { Controller, Get, Param } from '@nestjs/common';
-import { ApiTags, ApiOperation, ApiParam, ApiResponse, ApiBearerAuth } from '@nestjs/swagger';
+import { Controller, Get, Param, Query, DefaultValuePipe, ParseIntPipe } from '@nestjs/common';
+import { ApiTags, ApiOperation, ApiParam, ApiQuery, ApiResponse, ApiBearerAuth } from '@nestjs/swagger';
 import { GraphRepository } from '../graph/graph.repository';
+import { paginate } from '../common/dto/api-response.dto';
 import { ExternalSystemListResponse, ExternalSystemDetailResponse } from './external-systems.dto';
 
 @ApiTags('External Systems')
@@ -11,31 +12,35 @@ export class ExternalSystemsController {
 
   @Get()
   @ApiOperation({ summary: 'List all external systems with integration counts' })
+  @ApiQuery({ name: 'page', required: false, example: 1, description: 'Page number' })
+  @ApiQuery({ name: 'limit', required: false, example: 20, description: 'Items per page (max 100)' })
   @ApiResponse({ status: 200, type: ExternalSystemListResponse })
-  list() {
+  list(
+    @Query('page', new DefaultValuePipe(1), ParseIntPipe) page = 1,
+    @Query('limit', new DefaultValuePipe(50), ParseIntPipe) limit = 50,
+  ) {
     const systems = this.graph.getNodesByType('ExternalSystem');
-    return {
-      count: systems.length,
-      external_systems: systems.map(s => {
-        const incoming = this.graph.getIncoming(s.id, 'CONNECTS_TO_SYSTEM');
-        const serviceIds = incoming
-          .map(e => {
-            const intNode = this.graph.getNode(e.source_id);
-            if (!intNode) return null;
-            const svcEdges = this.graph.getIncoming(intNode.id, 'INTEGRATES_WITH');
-            return svcEdges.map(se => se.source_id);
-          })
-          .flat()
-          .filter((id): id is string => !!id);
-        return {
-          id: s.id,
-          name_ar: (s as any).canonical_name_ar,
-          name_en: (s as any).canonical_name_en,
-          connected_services: [...new Set(serviceIds)],
-          integration_count: incoming.length,
-        };
-      }),
-    };
+    const mapped = systems.map(s => {
+      const incoming = this.graph.getIncoming(s.id, 'CONNECTS_TO_SYSTEM');
+      const serviceIds = incoming
+        .map(e => {
+          const intNode = this.graph.getNode(e.source_id);
+          if (!intNode) return null;
+          const svcEdges = this.graph.getIncoming(intNode.id, 'INTEGRATES_WITH');
+          return svcEdges.map(se => se.source_id);
+        })
+        .flat()
+        .filter((id): id is string => !!id);
+      return {
+        id: s.id,
+        name_ar: (s as any).canonical_name_ar,
+        name_en: (s as any).canonical_name_en,
+        connected_services: [...new Set(serviceIds)],
+        integration_count: incoming.length,
+      };
+    });
+    const { data, meta } = paginate(mapped, page, limit);
+    return { ...meta, external_systems: data };
   }
 
   @Get(':id')

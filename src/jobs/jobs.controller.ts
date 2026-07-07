@@ -1,6 +1,7 @@
-import { Controller, Get, Param } from '@nestjs/common';
-import { ApiTags, ApiOperation, ApiParam, ApiResponse, ApiBearerAuth } from '@nestjs/swagger';
+import { Controller, Get, Param, Query, DefaultValuePipe, ParseIntPipe } from '@nestjs/common';
+import { ApiTags, ApiOperation, ApiParam, ApiQuery, ApiResponse, ApiBearerAuth } from '@nestjs/swagger';
 import { JobsService } from './jobs.service';
+import { paginate } from '../common/dto/api-response.dto';
 import { JobListResponse, JobDetailResponse, JobResultResponse } from './jobs.dto';
 
 @ApiTags('Jobs')
@@ -11,10 +12,16 @@ export class JobsController {
 
   @Get()
   @ApiOperation({ summary: 'List all async impact analysis jobs' })
+  @ApiQuery({ name: 'page', required: false, example: 1, description: 'Page number' })
+  @ApiQuery({ name: 'limit', required: false, example: 20, description: 'Items per page (max 100)' })
   @ApiResponse({ status: 200, type: JobListResponse })
-  list() {
+  list(
+    @Query('page', new DefaultValuePipe(1), ParseIntPipe) page = 1,
+    @Query('limit', new DefaultValuePipe(50), ParseIntPipe) limit = 50,
+  ) {
     const jobs = this.jobsService.list();
-    return { count: jobs.length, jobs };
+    const { data, meta } = paginate(jobs, page, limit);
+    return { ...meta, jobs: data };
   }
 
   @Get(':jobId')

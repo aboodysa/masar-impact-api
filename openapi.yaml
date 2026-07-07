@@ -37,6 +37,18 @@ paths:
         schema:
           example: Screen
           type: string
+      - name: limit
+        required: false
+        in: query
+        description: Items per page (max 100)
+        schema:
+          example: 20
+      - name: page
+        required: false
+        in: query
+        description: Page number
+        schema:
+          example: 1
       responses:
         '200':
           description: ''
@@ -81,15 +93,21 @@ paths:
         schema:
           example: DEPENDS_ON
           type: string
+      - name: limit
+        required: false
+        in: query
+        description: Items per page (max 100)
+        schema:
+          example: 20
+      - name: page
+        required: false
+        in: query
+        description: Page number
+        schema:
+          example: 1
       responses:
         '200':
           description: ''
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/GraphEdgeDto'
       security:
       - bearer: []
       summary: List graph edges, optionally filtered by type
@@ -178,7 +196,19 @@ paths:
       - Impact
     get:
       operationId: JobsController_list
-      parameters: []
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Items per page (max 100)
+        schema:
+          example: 20
+      - name: page
+        required: false
+        in: query
+        description: Page number
+        schema:
+          example: 1
       responses:
         '200':
           description: ''
@@ -295,7 +325,19 @@ paths:
   /api/v1/services:
     get:
       operationId: ServicesController_list
-      parameters: []
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Items per page (max 100)
+        schema:
+          example: 20
+      - name: page
+        required: false
+        in: query
+        description: Page number
+        schema:
+          example: 1
       responses:
         '200':
           description: ''
@@ -460,7 +502,19 @@ paths:
   /api/v1/external-systems:
     get:
       operationId: ExternalSystemsController_list
-      parameters: []
+      parameters:
+      - name: limit
+        required: false
+        in: query
+        description: Items per page (max 100)
+        schema:
+          example: 20
+      - name: page
+        required: false
+        in: query
+        description: Page number
+        schema:
+          example: 1
       responses:
         '200':
           description: ''
@@ -567,45 +621,6 @@ components:
       - count
       - type
       - nodes
-    GraphEdgeDto:
-      type: object
-      properties:
-        id:
-          type: string
-          example: edge:svc:wafed:has_screen:screen:wafed:contract-submit
-        source_id:
-          type: string
-          example: svc:wafed
-        target_id:
-          type: string
-          example: screen:wafed:contract-submit
-        type:
-          type: string
-          example: HAS_SCREEN
-        evidence_ids:
-          type: array
-          items:
-            type: string
-        impact_strength:
-          type: string
-          example: high
-        impact_category:
-          type: string
-          example: functional
-        reason:
-          type: string
-        confidence:
-          type: number
-          example: 0.9
-      required:
-      - id
-      - source_id
-      - target_id
-      - type
-      - evidence_ids
-      - impact_strength
-      - impact_category
-      - confidence
     NodeTypeCount:
       type: object
       properties:
