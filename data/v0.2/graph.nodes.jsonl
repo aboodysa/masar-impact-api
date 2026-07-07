@@ -267,7 +267,7 @@
 {"id": "doc:aamer-brd", "type": "Document", "canonical_name_ar": "وثيقة رؤية الحل - آمر", "canonical_name_en": "Solution Vision - Aamer - Employee Inquiry", "version": "v0.2", "source_file": "آمر__نموذج وثيقة رؤية الحل آمر V0.1.txt"}
 {"id": "scr:aamer:search", "type": "Screen", "name_ar": "بحث موظف", "screen_type": "inquiry"}
 {"id": "scr:aamer:request-status", "type": "Screen", "name_ar": "حالة الطلبات", "screen_type": "inquiry"}
-{"id": "int:aamer:nic", "type": "IntegrationPoint", "name": "تكامل مع نفاذ", "direction": "outbound"}
+{"id": "int:aamer:nafath", "type": "IntegrationPoint", "name": "تكامل مع نفاذ", "direction": "outbound"}
 {"id": "int:aamer:jics", "type": "IntegrationPoint", "name": "تكامل مع النظام المركزي", "direction": "outbound"}
 {"id": "svc:job-operations", "type": "Service", "canonical_name_ar": "عمليات الوظائف", "canonical_name_en": "Job Operations", "service_domain": "HR / Job Management", "maturity_level": "L3", "impact_readiness": "IR-3", "version": "v0.2", "description": "إدارة العمليات الوظيفية: التصنيف والوصف والتخطيط للقوى العاملة للجهات الحكومية."}
 {"id": "doc:job-operations-brd", "type": "Document", "canonical_name_ar": "وثيقة رؤية الحل - عمليات الوظائف", "canonical_name_en": "Solution Vision - Job Operations", "version": "v0.2", "source_file": "عمليات الوظائف__NCGR formats__نموذج وثيقة رؤية الحل__...txt"}

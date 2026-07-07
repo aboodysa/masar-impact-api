@@ -982,9 +982,21 @@
       "GraphNodesResponse": {
         "type": "object",
         "properties": {
-          "count": {
+          "page": {
+            "type": "number",
+            "example": 1
+          },
+          "limit": {
+            "type": "number",
+            "example": 50
+          },
+          "total": {
             "type": "number",
             "example": 64
+          },
+          "totalPages": {
+            "type": "number",
+            "example": 2
           },
           "type": {
             "type": "object",
@@ -999,7 +1011,10 @@
           }
         },
         "required": [
-          "count",
+          "page",
+          "limit",
+          "total",
+          "totalPages",
           "type",
           "nodes"
         ]
@@ -1296,9 +1311,21 @@
       "JobListResponse": {
         "type": "object",
         "properties": {
-          "count": {
+          "page": {
+            "type": "number",
+            "example": 1
+          },
+          "limit": {
+            "type": "number",
+            "example": 50
+          },
+          "total": {
             "type": "number",
             "example": 2
+          },
+          "totalPages": {
+            "type": "number",
+            "example": 1
           },
           "jobs": {
             "type": "array",
@@ -1308,7 +1335,10 @@
           }
         },
         "required": [
-          "count",
+          "page",
+          "limit",
+          "total",
+          "totalPages",
           "jobs"
         ]
       },
@@ -1484,9 +1514,21 @@
       "ServiceListResponse": {
         "type": "object",
         "properties": {
-          "count": {
+          "page": {
+            "type": "number",
+            "example": 1
+          },
+          "limit": {
+            "type": "number",
+            "example": 20
+          },
+          "total": {
             "type": "number",
             "example": 25
+          },
+          "totalPages": {
+            "type": "number",
+            "example": 2
           },
           "services": {
             "type": "array",
@@ -1496,7 +1538,10 @@
           }
         },
         "required": [
-          "count",
+          "page",
+          "limit",
+          "total",
+          "totalPages",
           "services"
         ]
       },
@@ -1725,9 +1770,21 @@
       "ExternalSystemListResponse": {
         "type": "object",
         "properties": {
-          "count": {
+          "page": {
+            "type": "number",
+            "example": 1
+          },
+          "limit": {
+            "type": "number",
+            "example": 50
+          },
+          "total": {
             "type": "number",
             "example": 25
+          },
+          "totalPages": {
+            "type": "number",
+            "example": 1
           },
           "external_systems": {
             "type": "array",
@@ -1737,7 +1794,10 @@
           }
         },
         "required": [
-          "count",
+          "page",
+          "limit",
+          "total",
+          "totalPages",
           "external_systems"
         ]
       },

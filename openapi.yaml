@@ -606,9 +606,18 @@ components:
     GraphNodesResponse:
       type: object
       properties:
-        count:
+        page:
+          type: number
+          example: 1
+        limit:
+          type: number
+          example: 50
+        total:
           type: number
           example: 64
+        totalPages:
+          type: number
+          example: 2
         type:
           type: object
           example: Screen
@@ -618,7 +627,10 @@ components:
           items:
             $ref: '#/components/schemas/GraphNodeRef'
       required:
-      - count
+      - page
+      - limit
+      - total
+      - totalPages
       - type
       - nodes
     NodeTypeCount:
@@ -830,15 +842,27 @@ components:
     JobListResponse:
       type: object
       properties:
-        count:
+        page:
+          type: number
+          example: 1
+        limit:
+          type: number
+          example: 50
+        total:
           type: number
           example: 2
+        totalPages:
+          type: number
+          example: 1
         jobs:
           type: array
           items:
             $ref: '#/components/schemas/JobDto'
       required:
-      - count
+      - page
+      - limit
+      - total
+      - totalPages
       - jobs
     JobDetailResponse:
       type: object
@@ -967,15 +991,27 @@ components:
     ServiceListResponse:
       type: object
       properties:
-        count:
+        page:
+          type: number
+          example: 1
+        limit:
+          type: number
+          example: 20
+        total:
           type: number
           example: 25
+        totalPages:
+          type: number
+          example: 2
         services:
           type: array
           items:
             $ref: '#/components/schemas/ServiceListItem'
       required:
-      - count
+      - page
+      - limit
+      - total
+      - totalPages
       - services
     ScreenDto:
       type: object
@@ -1136,15 +1172,27 @@ components:
     ExternalSystemListResponse:
       type: object
       properties:
-        count:
+        page:
+          type: number
+          example: 1
+        limit:
+          type: number
+          example: 50
+        total:
           type: number
           example: 25
+        totalPages:
+          type: number
+          example: 1
         external_systems:
           type: array
           items:
             $ref: '#/components/schemas/ExternalSystemListItem'
       required:
-      - count
+      - page
+      - limit
+      - total
+      - totalPages
       - external_systems
     IntegrationPointRef:
       type: object

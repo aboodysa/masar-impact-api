@@ -42,7 +42,10 @@ export class NodeTypeCount {
 }
 
 export class GraphNodesResponse {
-  @ApiProperty({ example: 64 }) count: number;
+  @ApiProperty({ example: 1 }) page: number;
+  @ApiProperty({ example: 50 }) limit: number;
+  @ApiProperty({ example: 64 }) total: number;
+  @ApiProperty({ example: 2 }) totalPages: number;
   @ApiProperty({ example: 'Screen', nullable: true }) type: string | null;
   @ApiProperty({ type: [GraphNodeRef] }) nodes: GraphNodeRef[];
 }
