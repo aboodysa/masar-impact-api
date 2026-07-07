@@ -1,9 +1,98 @@
-import { Controller, Get, Param } from '@nestjs/common';
+import { Controller, Get, Param, Header } from '@nestjs/common';
 import { GraphRepository } from '../graph/graph.repository';
 
 @Controller('api/v1/services')
 export class ServicesController {
   constructor(private readonly graph: GraphRepository) {}
+
+  private readonly maturityScores: Record<string, number> = { L4: 4, L3: 3, L2: 2, L1: 1 };
+  private readonly irScores: Record<string, number> = { 'IR-4': 4, 'IR-3': 3, 'IR-2': 2, 'IR-1': 1 };
+
+  @Get('maturity-index')
+  maturityIndex() {
+    const services = this.graph.getNodesByType('Service');
+    const entries = services.map(s => {
+      const ml = (s as any).maturity_level || 'L1';
+      const ir = (s as any).impact_readiness || 'IR-1';
+      const mScore = this.maturityScores[ml] || 1;
+      const irScore = this.irScores[ir] || 1;
+      const composite = +((mScore + irScore) / 2).toFixed(2);
+      return {
+        id: s.id,
+        name_ar: (s as any).canonical_name_ar,
+        name_en: (s as any).canonical_name_en,
+        domain: (s as any).service_domain,
+        maturity: ml,
+        impact_readiness: ir,
+        maturity_score: mScore,
+        readiness_score: irScore,
+        maturity_index: composite,
+        tier: composite >= 4 ? 'متقدم' : composite >= 3 ? 'متوسط' : 'أساسي',
+      };
+    }).sort((a, b) => b.maturity_index - a.maturity_index);
+
+    const byDomain: Record<string, { count: number; avgIndex: number; services: string[] }> = {};
+    for (const e of entries) {
+      const d = e.domain || 'Uncategorized';
+      if (!byDomain[d]) byDomain[d] = { count: 0, avgIndex: 0, services: [] };
+      byDomain[d].count++;
+      byDomain[d].avgIndex += e.maturity_index;
+      byDomain[d].services.push(e.id);
+    }
+    for (const d of Object.keys(byDomain)) {
+      byDomain[d].avgIndex = +((byDomain[d].avgIndex / byDomain[d].count)).toFixed(2);
+    }
+
+    const overall = +(entries.reduce((s, e) => s + e.maturity_index, 0) / entries.length).toFixed(2);
+
+    return {
+      overall_index: overall,
+      tier: overall >= 4 ? 'متقدم' : overall >= 3 ? 'متوسط' : 'أساسي',
+      total_services: entries.length,
+      distribution: {
+        L4: entries.filter(e => e.maturity === 'L4').length,
+        L3: entries.filter(e => e.maturity === 'L3').length,
+        L2: entries.filter(e => e.maturity === 'L2').length,
+      },
+      readiness: {
+        'IR-4': entries.filter(e => e.impact_readiness === 'IR-4').length,
+        'IR-3': entries.filter(e => e.impact_readiness === 'IR-3').length,
+        'IR-2': entries.filter(e => e.impact_readiness === 'IR-2').length,
+      },
+      by_domain: byDomain,
+      entries,
+    };
+  }
+
+  @Get('maturity-index/mermaid')
+  @Header('Content-Type', 'text/plain; charset=utf-8')
+  maturityIndexMermaid() {
+    const index = this.maturityIndex() as any;
+    const lines: string[] = [];
+    lines.push('flowchart TB');
+    lines.push(`  title["مؤشر النضج: ${index.overall_index}/4 - ${index.tier}"]`);
+    lines.push('  style title fill:#1e293b,color:#fff,font-size:16px');
+    lines.push('');
+
+    lines.push('  subgraph التوزيع["توزيع مستويات النضج"]');
+    lines.push(`    l4["L4: ${index.distribution.L4} خدمات"]`);
+    lines.push(`    l3["L3: ${index.distribution.L3} خدمات"]`);
+    lines.push(`    l2["L2: ${index.distribution.L2} خدمات"]`);
+    lines.push('  end');
+    lines.push('');
+
+    lines.push('  subgraph قطاعات["حسب المجال"]');
+    for (const [domain, info] of Object.entries(index.by_domain)) {
+      const dId = 'domain_' + domain.replace(/[^a-zA-Z0-9]/g, '_');
+      const avg = (info as any).avgIndex;
+      const color = avg >= 3.5 ? '#4f46e5' : avg >= 2.5 ? '#d97706' : '#dc2626';
+      lines.push(`    ${dId}["${domain}: ${avg}/4 (${(info as any).count} خدمات)"]`);
+      lines.push(`    style ${dId} fill:${color},color:#fff`);
+    }
+    lines.push('  end');
+
+    return `\`\`\`mermaid\n${lines.join('\n')}\n\`\`\``;
+  }
 
   @Get()
   list() {

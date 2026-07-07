@@ -364,3 +364,6 @@
 {"id": "int:competency-contractors:jics", "type": "IntegrationPoint", "name": "تكامل مع النظام المركزي", "direction": "outbound"}
 {"id": "int:competency-contractors:documentum", "type": "IntegrationPoint", "name": "تكامل مع Documentum", "direction": "outbound"}
 {"id": "int:competency-contractors:nic", "type": "IntegrationPoint", "name": "تكامل مع نفاذ", "direction": "outbound"}
+{"id": "ext:baynati", "type": "ExternalSystem", "canonical_name_ar": "بياناتي (تطبيق خارجي)"}
+{"id": "ext:ppa", "type": "ExternalSystem", "canonical_name_ar": "المؤسسة العامة للتقاعد (PPA)"}
+{"id": "ext:gosi", "type": "ExternalSystem", "canonical_name_ar": "التأمينات الاجتماعية (GOSI)"}
