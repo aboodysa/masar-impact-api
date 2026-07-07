@@ -14,10 +14,10 @@ async function bootstrap() {
   const config = new DocumentBuilder()
     .setTitle('MASAR Impact Analysis API')
     .setDescription('API for impact analysis of MASAR government services. Includes service graph traversal, async job processing, and Mermaid diagram generation.')
-    .setVersion('1.0.0')
+    .setVersion('2.0.0')
     .addServer('https://myapi.businessanalystcrew.org', 'Production')
     .addServer('http://localhost:3000', 'Local')
-    .addBearerAuth()
+    .addBearerAuth({ type: 'http', scheme: 'bearer', bearerFormat: 'JWT', description: 'API token from system administrator' })
     .build();
 
   const document = SwaggerModule.createDocument(app, config);

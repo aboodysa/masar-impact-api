@@ -1,8 +1,11 @@
 import { Controller, Get, Post, Param, Query, Body, Header } from '@nestjs/common';
+import { ApiTags, ApiOperation, ApiQuery, ApiParam, ApiBearerAuth } from '@nestjs/swagger';
 import { MermaidService } from './mermaid.service';
 import { ImpactService } from '../impact/impact.service';
 import { GraphRepository } from '../graph/graph.repository';
 
+@ApiTags('Mermaid')
+@ApiBearerAuth()
 @Controller('api/v1/mermaid')
 export class MermaidController {
   constructor(
@@ -13,6 +16,8 @@ export class MermaidController {
 
   @Get('service/:id')
   @Header('Content-Type', 'text/plain; charset=utf-8')
+  @ApiOperation({ summary: 'Generate Mermaid architecture diagram for a service' })
+  @ApiParam({ name: 'id', example: 'svc:wafed' })
   serviceArchitecture(@Param('id') id: string) {
     const result = this.mermaid.serviceArchitecture(id);
     if (!result) return { error: 'Service not found' };
@@ -21,6 +26,8 @@ export class MermaidController {
 
   @Get('dependencies/:id')
   @Header('Content-Type', 'text/plain; charset=utf-8')
+  @ApiOperation({ summary: 'Generate Mermaid dependency diagram for a service' })
+  @ApiParam({ name: 'id', example: 'svc:wafed' })
   dependencies(@Param('id') id: string) {
     const result = this.mermaid.dependencies(id);
     if (!result) return { error: 'Service not found' };
@@ -29,6 +36,8 @@ export class MermaidController {
 
   @Get('search')
   @Header('Content-Type', 'text/plain; charset=utf-8')
+  @ApiOperation({ summary: 'Search and visualize matching nodes as Mermaid diagram' })
+  @ApiQuery({ name: 'q', required: true, example: 'ترقيات' })
   search(@Query('q') q: string) {
     if (!q || q.length < 2) return { error: 'q (query) must be at least 2 characters' };
     const result = this.mermaid.searchGraph(q);
@@ -38,6 +47,7 @@ export class MermaidController {
 
   @Post('analyze')
   @Header('Content-Type', 'text/plain; charset=utf-8')
+  @ApiOperation({ summary: 'Analyze change impact and return Mermaid diagram' })
   analyze(@Body() body: any) {
     const changeRequest = body?.changeRequest;
     if (!changeRequest?.title) return { error: 'changeRequest.title is required' };
@@ -89,6 +99,7 @@ export class MermaidController {
 
   @Get('explore')
   @Header('Content-Type', 'text/plain; charset=utf-8')
+  @ApiOperation({ summary: 'Full MASAR service graph as Mermaid diagram' })
   explore() {
     const services = this.graph.getNodesByType('Service');
     const lines: string[] = [];

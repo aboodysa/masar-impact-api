@@ -1,6 +1,15 @@
 import { Controller, Get, Param, Header } from '@nestjs/common';
+import { ApiTags, ApiOperation, ApiParam, ApiResponse, ApiBearerAuth } from '@nestjs/swagger';
 import { GraphRepository } from '../graph/graph.repository';
+import {
+  ServiceListResponse,
+  ServiceDetailResponse,
+  MaturityIndexResponse,
+  ImpactPathResponse,
+} from './services.dto';
 
+@ApiTags('Services')
+@ApiBearerAuth()
 @Controller('api/v1/services')
 export class ServicesController {
   constructor(private readonly graph: GraphRepository) {}
@@ -9,6 +18,8 @@ export class ServicesController {
   private readonly irScores: Record<string, number> = { 'IR-4': 4, 'IR-3': 3, 'IR-2': 2, 'IR-1': 1 };
 
   @Get('maturity-index')
+  @ApiOperation({ summary: 'Service maturity index with scoring and domain breakdown' })
+  @ApiResponse({ status: 200, type: MaturityIndexResponse })
   maturityIndex() {
     const services = this.graph.getNodesByType('Service');
     const entries = services.map(s => {
@@ -66,6 +77,7 @@ export class ServicesController {
 
   @Get('maturity-index/mermaid')
   @Header('Content-Type', 'text/plain; charset=utf-8')
+  @ApiOperation({ summary: 'Maturity index as a Mermaid flowchart diagram' })
   maturityIndexMermaid() {
     const index = this.maturityIndex() as any;
     const lines: string[] = [];
@@ -95,6 +107,8 @@ export class ServicesController {
   }
 
   @Get()
+  @ApiOperation({ summary: 'List all services' })
+  @ApiResponse({ status: 200, type: ServiceListResponse })
   list() {
     const services = this.graph.getNodesByType('Service');
     return {
@@ -112,6 +126,10 @@ export class ServicesController {
   }
 
   @Get(':id')
+  @ApiOperation({ summary: 'Get service detail with screens, roles, integrations, dependencies, documents' })
+  @ApiParam({ name: 'id', example: 'svc:wafed', description: 'Service ID (with or without svc: prefix)' })
+  @ApiResponse({ status: 200, type: ServiceDetailResponse })
+  @ApiResponse({ status: 404, description: 'Service not found' })
   getById(@Param('id') id: string) {
     const service = this.graph.getNode(id);
     if (!service || service.type !== 'Service') {
@@ -148,6 +166,10 @@ export class ServicesController {
   }
 
   @Get(':id/dependencies')
+  @ApiOperation({ summary: 'Get service dependencies (dependsOn + dependedBy)' })
+  @ApiParam({ name: 'id', example: 'svc:wafed' })
+  @ApiResponse({ status: 200, description: 'Dependencies returned' })
+  @ApiResponse({ status: 404, description: 'Service not found' })
   getDependencies(@Param('id') id: string) {
     const service = this.graph.getNode(id);
     if (!service || service.type !== 'Service') {
@@ -170,6 +192,10 @@ export class ServicesController {
   }
 
   @Get(':id/impact-path')
+  @ApiOperation({ summary: 'Get impact path — screens, fields, actions, and integrations for a service' })
+  @ApiParam({ name: 'id', example: 'svc:wafed' })
+  @ApiResponse({ status: 200, type: ImpactPathResponse })
+  @ApiResponse({ status: 404, description: 'Service not found' })
   getImpactPath(@Param('id') id: string) {
     const service = this.graph.getNode(id);
     if (!service || service.type !== 'Service') {

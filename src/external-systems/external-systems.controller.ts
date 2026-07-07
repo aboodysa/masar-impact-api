@@ -1,11 +1,17 @@
 import { Controller, Get, Param } from '@nestjs/common';
+import { ApiTags, ApiOperation, ApiParam, ApiResponse, ApiBearerAuth } from '@nestjs/swagger';
 import { GraphRepository } from '../graph/graph.repository';
+import { ExternalSystemListResponse, ExternalSystemDetailResponse } from './external-systems.dto';
 
+@ApiTags('External Systems')
+@ApiBearerAuth()
 @Controller('api/v1/external-systems')
 export class ExternalSystemsController {
   constructor(private readonly graph: GraphRepository) {}
 
   @Get()
+  @ApiOperation({ summary: 'List all external systems with integration counts' })
+  @ApiResponse({ status: 200, type: ExternalSystemListResponse })
   list() {
     const systems = this.graph.getNodesByType('ExternalSystem');
     return {
@@ -33,6 +39,10 @@ export class ExternalSystemsController {
   }
 
   @Get(':id')
+  @ApiOperation({ summary: 'Get external system detail with connected services and integrations' })
+  @ApiParam({ name: 'id', example: 'ext:nic', description: 'External system ID (with or without ext: prefix)' })
+  @ApiResponse({ status: 200, type: ExternalSystemDetailResponse })
+  @ApiResponse({ status: 404, description: 'External system not found' })
   getById(@Param('id') id: string) {
     const extId = id.startsWith('ext:') ? id : `ext:${id}`;
     const system = this.graph.getNode(extId);
