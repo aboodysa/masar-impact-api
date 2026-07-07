@@ -103,6 +103,7 @@ export class ServicesController {
         id: s.id,
         name_ar: (s as any).canonical_name_ar,
         name_en: (s as any).canonical_name_en,
+        description: (s as any).description || null,
         domain: (s as any).service_domain,
         maturity: (s as any).maturity_level,
         impact_readiness: (s as any).impact_readiness,
