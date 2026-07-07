@@ -9,6 +9,80 @@ paths:
           description: ''
       tags:
       - App
+  /api/v1/graph/stats:
+    get:
+      operationId: GraphController_stats
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Graph
+  /api/v1/graph/nodes:
+    get:
+      operationId: GraphController_listNodes
+      parameters:
+      - name: type
+        required: true
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Graph
+  /api/v1/graph/nodes/{id}:
+    get:
+      operationId: GraphController_getNode
+      parameters:
+      - name: id
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Graph
+  /api/v1/graph/edges:
+    get:
+      operationId: GraphController_listEdges
+      parameters:
+      - name: type
+        required: true
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Graph
+  /api/v1/graph/edges/{id}:
+    get:
+      operationId: GraphController_getEdge
+      parameters:
+      - name: id
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Graph
+  /api/v1/graph/types:
+    get:
+      operationId: GraphController_nodeTypes
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Graph
   /api/v1/impact/analyze:
     post:
       operationId: ImpactController_analyze
@@ -77,6 +151,24 @@ paths:
           description: ''
       tags:
       - Jobs
+  /api/v1/services/maturity-index:
+    get:
+      operationId: ServicesController_maturityIndex
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Services
+  /api/v1/services/maturity-index/mermaid:
+    get:
+      operationId: ServicesController_maturityIndexMermaid
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - Services
   /api/v1/services:
     get:
       operationId: ServicesController_list
@@ -188,6 +280,29 @@ paths:
           description: ''
       tags:
       - Mermaid
+  /api/v1/external-systems:
+    get:
+      operationId: ExternalSystemsController_list
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - ExternalSystems
+  /api/v1/external-systems/{id}:
+    get:
+      operationId: ExternalSystemsController_getById
+      parameters:
+      - name: id
+        required: true
+        in: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+      tags:
+      - ExternalSystems
 info:
   title: MASAR Impact Analysis API
   description: API for impact analysis of MASAR government services. Includes service

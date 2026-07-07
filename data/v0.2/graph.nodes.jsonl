@@ -152,7 +152,7 @@
 {"id": "screen:grievances:reports", "type": "Screen", "name_ar": "التقارير", "name_en": "Employee Achievement Reports", "screen_type": "ADMIN", "purpose": "شاشة تخص تقارير انجاز الموظفين", "confidence": 0.92}
 {"id": "screen:grievances:acceptance-controls", "type": "Screen", "name_ar": "ادارة ضوابط قبول طلب التظلم", "name_en": "Manage Acceptance Controls", "screen_type": "ADMIN", "purpose": "شاشة تسمح بإدارة ضوابط أسباب رفض التظلمات", "confidence": 0.92}
 {"id": "screen:grievances:grievance-report", "type": "Screen", "name_ar": "تقرير التظلمات", "name_en": "Grievance Report", "screen_type": "REPORT", "purpose": "شاشة لعرض تقارير التظلمات", "confidence": 0.92}
-{"id": "svc:bayan", "type": "Service", "canonical_name_ar": "بيان - تحقيق الخدمة", "canonical_name_en": "Bayan - Service Achievement", "service_domain": "HR / Employee Services", "maturity_level": "L4", "impact_readiness": "IR-3", "version": "v0.2", "description": "Framework Agreement platform for service achievement requests. Employees submit service achievement requests reviewed by entity and HRSD."}
+{"id": "svc:bayan", "type": "Service", "canonical_name_ar": "بيان - تحقيق الخدمة", "canonical_name_en": "Bayan - Service Achievement", "service_domain": "HR / Employee Services", "maturity_level": "L4", "impact_readiness": "IR-3", "version": "v0.2", "description": "منصة إطار العمل لطلبات تحقيق الخدمة. يتيح للموظفين تقديم طلبات تحقيق الخدمة ومراجعتها من قبل المختص والجهة."}
 {"id": "doc:bayan-brd", "type": "Document", "canonical_name_ar": "وثيقة رؤية الحل - بيان - تحقيق الخدمة", "canonical_name_en": "Solution Vision - Bayan - Service Achievement", "version": "v0.2", "source_file": "SAD Doc-Business view__Bayan__BayanSAD Document.txt"}
 {"id": "scr:bayan:request", "type": "Screen", "name_ar": "طلب تحقيق الخدمة", "screen_type": "request_form"}
 {"id": "scr:bayan:inbox", "type": "Screen", "name_ar": "صندوق الصادر والوارد", "screen_type": "inbox"}
@@ -175,7 +175,7 @@
 {"id": "int:bayan:refd", "type": "IntegrationPoint", "name": "تكامل مع صندوق التنمية العقارية", "direction": "outbound"}
 {"id": "ext:sdb", "type": "ExternalSystem", "canonical_name_ar": "بنك التنمية الاجتماعية"}
 {"id": "int:bayan:sdb", "type": "IntegrationPoint", "name": "تكامل مع بنك التنمية الاجتماعية", "direction": "outbound"}
-{"id": "svc:bayanti", "type": "Service", "canonical_name_ar": "بياناتي - بيانات التوظيف", "canonical_name_en": "Bayanti - Employment Data", "service_domain": "HR / Employee Records", "maturity_level": "L4", "impact_readiness": "IR-3", "version": "v0.2", "description": "Manage employee employment data modification requests. Employees and entity specialists submit data changes reviewed and approved through entity and HRSD workflow."}
+{"id": "svc:bayanti", "type": "Service", "canonical_name_ar": "بياناتي - بيانات التوظيف", "canonical_name_en": "Bayanti - Employment Data", "service_domain": "HR / Employee Records", "maturity_level": "L4", "impact_readiness": "IR-3", "version": "v0.2", "description": "إدارة طلبات تعديل بيانات الموظفين. يتيح للموظفين ومختصي الجهات تقديم وتحديث بيانات التوظيف."}
 {"id": "doc:bayanti-brd", "type": "Document", "canonical_name_ar": "وثيقة رؤية الحل - بياناتي - بيانات التوظيف", "canonical_name_en": "Solution Vision - Bayanti - Employment Data", "version": "v0.2", "source_file": "SAD Doc-Business view__Bayanti__Employment Data SAD Document.txt"}
 {"id": "scr:bayanti:add-request", "type": "Screen", "name_ar": "إضافة طلب جديد", "screen_type": "request_form"}
 {"id": "scr:bayanti:my-requests", "type": "Screen", "name_ar": "الخدمات الإلكترونية / طلباتي", "screen_type": "inquiry"}
@@ -191,7 +191,7 @@
 {"id": "int:bayanti:documentum", "type": "IntegrationPoint", "name": "تكامل مع Documentum", "direction": "outbound"}
 {"id": "int:bayanti:nic", "type": "IntegrationPoint", "name": "تكامل مع NIC", "direction": "outbound"}
 {"id": "int:bayanti:tawtheeq", "type": "IntegrationPoint", "name": "تكامل مع توثيق", "direction": "outbound"}
-{"id": "svc:complaints", "type": "Service", "canonical_name_ar": "الشكاوى", "canonical_name_en": "Complaints", "service_domain": "HR / Complaints", "maturity_level": "L3", "impact_readiness": "IR-3", "version": "v0.2", "description": "Manage complaint requests from government employees. Full lifecycle from creation through specialist handling, governmental entity review, and final approval."}
+{"id": "svc:complaints", "type": "Service", "canonical_name_ar": "الشكاوى", "canonical_name_en": "Complaints", "service_domain": "HR / Complaints", "maturity_level": "L3", "impact_readiness": "IR-3", "version": "v0.2", "description": "إدارة طلبات التظلمات من موظفي القطاع الحكومي. دورة كاملة من الإنشاء عبر المختصين حتى الإغلاق."}
 {"id": "doc:complaints-brd", "type": "Document", "canonical_name_ar": "وثيقة رؤية الحل - الشكاوى", "canonical_name_en": "Solution Vision - Complaints", "version": "v0.2", "source_file": "SAD Doc-Business view__Complaints__Complaints SAD.txt"}
 {"id": "scr:complaints:create", "type": "Screen", "name_ar": "إنشاء شكوى", "screen_type": "request_form"}
 {"id": "scr:complaints:search", "type": "Screen", "name_ar": "البحث عن الشكاوى", "screen_type": "inquiry"}
@@ -206,7 +206,7 @@
 {"id": "role:complaints:representative", "type": "Role", "name_ar": "ممثل", "organization_scope": "advisory", "access_scope": "advisory"}
 {"id": "int:complaints:nafath", "type": "IntegrationPoint", "name": "تكامل مع نفاذ", "direction": "outbound"}
 {"id": "int:complaints:camunda", "type": "IntegrationPoint", "name": "تكامل مع Camunda", "direction": "outbound"}
-{"id": "svc:jobs-budget", "type": "Service", "canonical_name_ar": "ميزانية الوظائف", "canonical_name_en": "Jobs Budget", "service_domain": "HR / Budget & Planning", "maturity_level": "L3", "impact_readiness": "IR-3", "version": "v0.2", "description": "Manage job budget data editing requests. Entity specialists submit job info changes reviewed by ministry reviewers and approved by entity/ministry approvers."}
+{"id": "svc:jobs-budget", "type": "Service", "canonical_name_ar": "ميزانية الوظائف", "canonical_name_en": "Jobs Budget", "service_domain": "HR / Budget & Planning", "maturity_level": "L3", "impact_readiness": "IR-3", "version": "v0.2", "description": "إدارة طلبات تعديل بيانات ميزانية الوظائف. يتيح لمختصي الجهات تقديم تغييرات معلومات الوظائف ومراجعتها من قبل الوزارة."}
 {"id": "doc:jobs-budget-brd", "type": "Document", "canonical_name_ar": "وثيقة رؤية الحل - ميزانية الوظائف", "canonical_name_en": "Solution Vision - Jobs Budget", "version": "v0.2", "source_file": "SAD Doc-Business view__Jobs Budget__MASAR - Jobs Budget SAD.txt"}
 {"id": "scr:jobs-budget:add-request", "type": "Screen", "name_ar": "إنشاء طلب تعديل بيانات الوظيفة", "screen_type": "request_form"}
 {"id": "scr:jobs-budget:review", "type": "Screen", "name_ar": "مراجعة طلب تعديل بيانات الوظيفة", "screen_type": "review"}
@@ -222,7 +222,7 @@
 {"id": "int:jobs-budget:pjs", "type": "IntegrationPoint", "name": "تكامل مع نظام الوظائف العام (PJS)", "direction": "outbound"}
 {"id": "ext:new-masar", "type": "ExternalSystem", "canonical_name_ar": "مسار الجديد (SSO)"}
 {"id": "int:jobs-budget:new-masar", "type": "IntegrationPoint", "name": "تكامل مع مسار الجديد (SSO)", "direction": "outbound"}
-{"id": "svc:tawtheeq", "type": "Service", "canonical_name_ar": "توثيق", "canonical_name_en": "Tawtheeq - Documentation", "service_domain": "HR / Records & Documentation", "maturity_level": "L4", "impact_readiness": "IR-3", "version": "v0.2", "description": "Document any request to JICS — registration, review, approval, and rejection workflows for government employee records."}
+{"id": "svc:tawtheeq", "type": "Service", "canonical_name_ar": "توثيق", "canonical_name_en": "Tawtheeq - Documentation", "service_domain": "HR / Records & Documentation", "maturity_level": "L4", "impact_readiness": "IR-3", "version": "v0.2", "description": "توثيق أي طلب إلى النظام المركزي — سير عمل التسجيل والمراجعة والاعتماد والرفض للجهات الحكومية."}
 {"id": "doc:tawtheeq-brd", "type": "Document", "canonical_name_ar": "وثيقة رؤية الحل - توثيق", "canonical_name_en": "Solution Vision - Tawtheeq - Documentation", "version": "v0.2", "source_file": "SAD Doc-Business view__Tawtheeq__Tawtheeq - SAD.txt"}
 {"id": "scr:tawtheeq:register", "type": "Screen", "name_ar": "تسجيل طلب", "screen_type": "request_form"}
 {"id": "scr:tawtheeq:entity-review", "type": "Screen", "name_ar": "مراجعة الطلب (الجهة)", "screen_type": "review"}
@@ -237,7 +237,7 @@
 {"id": "int:tawtheeq:jadara", "type": "IntegrationPoint", "name": "تكامل مع جداري", "direction": "outbound"}
 {"id": "ext:graduation", "type": "ExternalSystem", "canonical_name_ar": "خدمة مؤهل (وزارة التعليم)"}
 {"id": "int:tawtheeq:graduation", "type": "IntegrationPoint", "name": "تكامل مع خدمة مؤهل (وزارة التعليم)", "direction": "outbound"}
-{"id": "svc:performance-mgmt", "type": "Service", "canonical_name_ar": "إدارة الأداء", "canonical_name_en": "Performance Management", "service_domain": "HR / Performance", "maturity_level": "L3", "impact_readiness": "IR-3", "version": "v0.2", "description": "Manage employee annual performance plans, goal setting, evaluation, and appeals. Full lifecycle from plan creation through evaluation and complaint resolution."}
+{"id": "svc:performance-mgmt", "type": "Service", "canonical_name_ar": "إدارة الأداء", "canonical_name_en": "Performance Management", "service_domain": "HR / Performance", "maturity_level": "L3", "impact_readiness": "IR-3", "version": "v0.2", "description": "إدارة خطط الأداء السنوية للموظفين وتحديد الأهداف والتقييم والاعتراضات. دورة حياة كاملة من التخطيط إلى التقييم النهائي."}
 {"id": "doc:performance-mgmt-brd", "type": "Document", "canonical_name_ar": "وثيقة رؤية الحل - إدارة الأداء", "canonical_name_en": "Solution Vision - Performance Management", "version": "v0.2", "source_file": "SAD Doc-Business view__ادارة الاداء__ادارة الاداء - SAD.txt"}
 {"id": "scr:pm:annual-plan", "type": "Screen", "name_ar": "إدارة الخطة السنوية", "screen_type": "management"}
 {"id": "scr:pm:org-unit", "type": "Screen", "name_ar": "إدارة الهيكل التنظيمي", "screen_type": "management"}
@@ -263,17 +263,17 @@
 {"id": "int:performance-mgmt:sadad", "type": "IntegrationPoint", "name": "تكامل مع سداد / تحصيل", "direction": "outbound"}
 {"id": "ext:apigee", "type": "ExternalSystem", "canonical_name_ar": "APIgee"}
 {"id": "int:performance-mgmt:apigee", "type": "IntegrationPoint", "name": "تكامل مع APIgee", "direction": "outbound"}
-{"id": "svc:aamer", "type": "Service", "canonical_name_ar": "آمر", "canonical_name_en": "Aamer - Employee Inquiry", "service_domain": "HR / Employee Services", "maturity_level": "L3", "impact_readiness": "IR-3", "version": "v0.2", "description": "Unified employee data and request status inquiry across multiple MASAR services for government entities."}
+{"id": "svc:aamer", "type": "Service", "canonical_name_ar": "آمر", "canonical_name_en": "Aamer - Employee Inquiry", "service_domain": "HR / Employee Services", "maturity_level": "L3", "impact_readiness": "IR-3", "version": "v0.2", "description": "استفسار موحد عن بيانات الموظفين وحالة الطلبات عبر خدمات مسار المتعددة للجهات الحكومية."}
 {"id": "doc:aamer-brd", "type": "Document", "canonical_name_ar": "وثيقة رؤية الحل - آمر", "canonical_name_en": "Solution Vision - Aamer - Employee Inquiry", "version": "v0.2", "source_file": "آمر__نموذج وثيقة رؤية الحل آمر V0.1.txt"}
 {"id": "scr:aamer:search", "type": "Screen", "name_ar": "بحث موظف", "screen_type": "inquiry"}
 {"id": "scr:aamer:request-status", "type": "Screen", "name_ar": "حالة الطلبات", "screen_type": "inquiry"}
 {"id": "int:aamer:nic", "type": "IntegrationPoint", "name": "تكامل مع نفاذ", "direction": "outbound"}
 {"id": "int:aamer:jics", "type": "IntegrationPoint", "name": "تكامل مع النظام المركزي", "direction": "outbound"}
-{"id": "svc:job-operations", "type": "Service", "canonical_name_ar": "عمليات الوظائف", "canonical_name_en": "Job Operations", "service_domain": "HR / Job Management", "maturity_level": "L3", "impact_readiness": "IR-3", "version": "v0.2", "description": "Manage job-related operations: classification, descriptions, and workforce planning for government entities."}
+{"id": "svc:job-operations", "type": "Service", "canonical_name_ar": "عمليات الوظائف", "canonical_name_en": "Job Operations", "service_domain": "HR / Job Management", "maturity_level": "L3", "impact_readiness": "IR-3", "version": "v0.2", "description": "إدارة العمليات الوظيفية: التصنيف والوصف والتخطيط للقوى العاملة للجهات الحكومية."}
 {"id": "doc:job-operations-brd", "type": "Document", "canonical_name_ar": "وثيقة رؤية الحل - عمليات الوظائف", "canonical_name_en": "Solution Vision - Job Operations", "version": "v0.2", "source_file": "عمليات الوظائف__NCGR formats__نموذج وثيقة رؤية الحل__...txt"}
 {"id": "int:job-operations:jics", "type": "IntegrationPoint", "name": "تكامل مع النظام المركزي", "direction": "outbound"}
 {"id": "int:job-operations:documentum", "type": "IntegrationPoint", "name": "تكامل مع Documentum", "direction": "outbound"}
-{"id": "svc:martyrs-families", "type": "Service", "canonical_name_ar": "تعيين ذوي الشهداء", "canonical_name_en": "Martyrs' Families Appointment", "service_domain": "HR / Special Employment", "maturity_level": "L2", "impact_readiness": "IR-3", "version": "v0.2", "description": "Manage registration of martyrs and appointment requests for their family members."}
+{"id": "svc:martyrs-families", "type": "Service", "canonical_name_ar": "تعيين ذوي الشهداء", "canonical_name_en": "Martyrs' Families Appointment", "service_domain": "HR / Special Employment", "maturity_level": "L2", "impact_readiness": "IR-3", "version": "v0.2", "description": "إدارة تسجيل الشهداء وطلبات تعيين أفراد أسرهم."}
 {"id": "doc:martyrs-families-brd", "type": "Document", "canonical_name_ar": "وثيقة رؤية الحل - تعيين ذوي الشهداء", "canonical_name_en": "Solution Vision - Martyrs' Families Appointment", "version": "v0.2", "source_file": "تعيين ذوى الشهداء__NCGR format__وثيقة رؤية الحل__...txt"}
 {"id": "scr:martyrs:register", "type": "Screen", "name_ar": "تسجيل شهيد", "screen_type": "registration"}
 {"id": "scr:martyrs:appointment", "type": "Screen", "name_ar": "طلب تعيين", "screen_type": "request_form"}
@@ -281,33 +281,33 @@
 {"id": "int:martyrs-families:jics", "type": "IntegrationPoint", "name": "تكامل مع النظام المركزي", "direction": "outbound"}
 {"id": "int:martyrs-families:documentum", "type": "IntegrationPoint", "name": "تكامل مع Documentum", "direction": "outbound"}
 {"id": "int:martyrs-families:nic", "type": "IntegrationPoint", "name": "تكامل مع نفاذ", "direction": "outbound"}
-{"id": "svc:employee-placement", "type": "Service", "canonical_name_ar": "تسكين الموظفين", "canonical_name_en": "Employee Placement", "service_domain": "HR / Employee Movement", "maturity_level": "L3", "impact_readiness": "IR-3", "version": "v0.2", "description": "Enable government entities to manage employee placement into positions within organizational structure."}
+{"id": "svc:employee-placement", "type": "Service", "canonical_name_ar": "تسكين الموظفين", "canonical_name_en": "Employee Placement", "service_domain": "HR / Employee Movement", "maturity_level": "L3", "impact_readiness": "IR-3", "version": "v0.2", "description": "تمكين الجهات الحكومية من إدارة توجيه الموظفين في الوظائف ضمن الهياكل التنظيمية."}
 {"id": "doc:employee-placement-brd", "type": "Document", "canonical_name_ar": "وثيقة رؤية الحل - تسكين الموظفين", "canonical_name_en": "Solution Vision - Employee Placement", "version": "v0.2", "source_file": "تسكين الموظفين__NCGR format__وثيقة رؤية الحل__...txt"}
 {"id": "int:employee-placement:jics", "type": "IntegrationPoint", "name": "تكامل مع النظام المركزي", "direction": "outbound"}
-{"id": "svc:engineering-placement", "type": "Service", "canonical_name_ar": "تسكين اللائحة الهندسية", "canonical_name_en": "Engineering List Placement", "service_domain": "HR / Specialized Employment", "maturity_level": "L2", "impact_readiness": "IR-3", "version": "v0.2", "description": "Manage employee placement from general to engineering salary scale."}
+{"id": "svc:engineering-placement", "type": "Service", "canonical_name_ar": "تسكين اللائحة الهندسية", "canonical_name_en": "Engineering List Placement", "service_domain": "HR / Specialized Employment", "maturity_level": "L2", "impact_readiness": "IR-3", "version": "v0.2", "description": "إدارة توجيه الموظفين من سلم الرواتب العام إلى سلم الرواتب الهندسية."}
 {"id": "doc:engineering-placement-brd", "type": "Document", "canonical_name_ar": "وثيقة رؤية الحل - تسكين اللائحة الهندسية", "canonical_name_en": "Solution Vision - Engineering List Placement", "version": "v0.2", "source_file": "تسكين اللائحة الهندسية Not included__NCGR format__...txt"}
 {"id": "int:engineering-placement:jics", "type": "IntegrationPoint", "name": "تكامل مع النظام المركزي", "direction": "outbound"}
 {"id": "int:engineering-placement:documentum", "type": "IntegrationPoint", "name": "تكامل مع Documentum", "direction": "outbound"}
 {"id": "int:engineering-placement:nic", "type": "IntegrationPoint", "name": "تكامل مع نفاذ", "direction": "outbound"}
-{"id": "svc:transfer", "type": "Service", "canonical_name_ar": "النقل", "canonical_name_en": "Transfer", "service_domain": "HR / Employee Movement", "maturity_level": "L3", "impact_readiness": "IR-3", "version": "v0.2", "description": "Manage employee transfer processes between government entities end-to-end."}
+{"id": "svc:transfer", "type": "Service", "canonical_name_ar": "النقل", "canonical_name_en": "Transfer", "service_domain": "HR / Employee Movement", "maturity_level": "L3", "impact_readiness": "IR-3", "version": "v0.2", "description": "إدارة عمليات نقل الموظفين بين الجهات الحكومية من البداية إلى النهاية."}
 {"id": "doc:transfer-brd", "type": "Document", "canonical_name_ar": "وثيقة رؤية الحل - النقل", "canonical_name_en": "Solution Vision - Transfer", "version": "v0.2", "source_file": "النقل__NCGR format__وثيقة نموذج رؤية الحل__...txt"}
 {"id": "int:transfer:jics", "type": "IntegrationPoint", "name": "تكامل مع النظام المركزي", "direction": "outbound"}
 {"id": "int:transfer:documentum", "type": "IntegrationPoint", "name": "تكامل مع Documentum", "direction": "outbound"}
 {"id": "int:transfer:nic", "type": "IntegrationPoint", "name": "تكامل مع نفاذ", "direction": "outbound"}
-{"id": "svc:joint-committees", "type": "Service", "canonical_name_ar": "اللجان الحكومية المشتركة", "canonical_name_en": "Joint Government Committees", "service_domain": "Governance / Committees", "maturity_level": "L2", "impact_readiness": "IR-3", "version": "v0.2", "description": "Manage registration, workflows, and monitoring of joint committees between government entities and HRSD."}
+{"id": "svc:joint-committees", "type": "Service", "canonical_name_ar": "اللجان الحكومية المشتركة", "canonical_name_en": "Joint Government Committees", "service_domain": "Governance / Committees", "maturity_level": "L2", "impact_readiness": "IR-3", "version": "v0.2", "description": "إدارة تسجيل وسير العمل ومتابعة اللجان المشتركة بين الجهات الحكومية والوزارة."}
 {"id": "doc:joint-committees-brd", "type": "Document", "canonical_name_ar": "وثيقة رؤية الحل - اللجان الحكومية المشتركة", "canonical_name_en": "Solution Vision - Joint Government Committees", "version": "v0.2", "source_file": "اللجان الحكومية المشتركة__NCGR format__...txt"}
 {"id": "scr:jc:register", "type": "Screen", "name_ar": "تسجيل لجنة", "screen_type": "registration"}
 {"id": "scr:jc:members", "type": "Screen", "name_ar": "إدارة الأعضاء", "screen_type": "management"}
 {"id": "int:joint-committees:jics", "type": "IntegrationPoint", "name": "تكامل مع النظام المركزي", "direction": "outbound"}
 {"id": "int:joint-committees:documentum", "type": "IntegrationPoint", "name": "تكامل مع Documentum", "direction": "outbound"}
 {"id": "int:joint-committees:nic", "type": "IntegrationPoint", "name": "تكامل مع نفاذ", "direction": "outbound"}
-{"id": "svc:permissions", "type": "Service", "canonical_name_ar": "الصلاحيات", "canonical_name_en": "Permissions", "service_domain": "Governance / Access Control", "maturity_level": "L3", "impact_readiness": "IR-3", "version": "v0.2", "description": "Manage user permissions for government entities within the MASAR platform."}
+{"id": "svc:permissions", "type": "Service", "canonical_name_ar": "الصلاحيات", "canonical_name_en": "Permissions", "service_domain": "Governance / Access Control", "maturity_level": "L3", "impact_readiness": "IR-3", "version": "v0.2", "description": "إدارة صلاحيات المستخدمين للجهات الحكومية ضمن منصة مسار."}
 {"id": "doc:permissions-brd", "type": "Document", "canonical_name_ar": "وثيقة رؤية الحل - الصلاحيات", "canonical_name_en": "Solution Vision - Permissions", "version": "v0.2", "source_file": "الصلاحيات القديم__NCGR format__وثيقة رؤية الحل__...txt"}
 {"id": "scr:perms:search", "type": "Screen", "name_ar": "بحث صلاحيات", "screen_type": "inquiry"}
 {"id": "scr:perms:coordinators", "type": "Screen", "name_ar": "إدارة المنسقين", "screen_type": "management"}
 {"id": "int:permissions:nic", "type": "IntegrationPoint", "name": "تكامل مع نفاذ", "direction": "outbound"}
 {"id": "int:permissions:documentum", "type": "IntegrationPoint", "name": "تكامل مع Documentum", "direction": "outbound"}
-{"id": "svc:cv", "type": "Service", "canonical_name_ar": "السيرة الذاتية", "canonical_name_en": "CV / Talent Profile", "service_domain": "HR / Talent Management", "maturity_level": "L3", "impact_readiness": "IR-3", "version": "v0.2", "description": "Enable government entities to search for employee CVs and employees to publish their CVs for career opportunities."}
+{"id": "svc:cv", "type": "Service", "canonical_name_ar": "السيرة الذاتية", "canonical_name_en": "CV / Talent Profile", "service_domain": "HR / Talent Management", "maturity_level": "L3", "impact_readiness": "IR-3", "version": "v0.2", "description": "تمكين الجهات الحكومية من البحث عن السير الذاتية للموظفين وتمكين الموظفين من نشر سيرهم الذاتية."}
 {"id": "doc:cv-brd", "type": "Document", "canonical_name_ar": "وثيقة رؤية الحل - السيرة الذاتية", "canonical_name_en": "Solution Vision - CV / Talent Profile", "version": "v0.2", "source_file": "السيرة الذاتية__NCGR format__وثيقة رؤية الحل__...txt"}
 {"id": "scr:cv:edit", "type": "Screen", "name_ar": "إنشاء/تعديل السيرة الذاتية", "screen_type": "form"}
 {"id": "scr:cv:search", "type": "Screen", "name_ar": "البحث في السير الذاتية", "screen_type": "inquiry"}
@@ -315,33 +315,33 @@
 {"id": "int:cv:nic", "type": "IntegrationPoint", "name": "تكامل مع نفاذ", "direction": "outbound"}
 {"id": "int:cv:documentum", "type": "IntegrationPoint", "name": "تكامل مع Documentum", "direction": "outbound"}
 {"id": "int:cv:transfer", "type": "IntegrationPoint", "name": "تكامل مع خدمة النقل", "direction": "outbound"}
-{"id": "svc:learning-dev", "type": "Service", "canonical_name_ar": "التطوير والتعلم", "canonical_name_en": "Learning & Development", "service_domain": "HR / Training", "maturity_level": "L2", "impact_readiness": "IR-3", "version": "v0.2", "description": "Manage all learning and development services: training, scholarships, and secondments for government employees."}
+{"id": "svc:learning-dev", "type": "Service", "canonical_name_ar": "التطوير والتعلم", "canonical_name_en": "Learning & Development", "service_domain": "HR / Training", "maturity_level": "L2", "impact_readiness": "IR-3", "version": "v0.2", "description": "إدارة جميع خدمات التعلم والتطوير: التدريب والابتعاث والندب لموظفي القطاع الحكومي."}
 {"id": "doc:learning-dev-brd", "type": "Document", "canonical_name_ar": "وثيقة رؤية الحل - التطوير والتعلم", "canonical_name_en": "Solution Vision - Learning & Development", "version": "v0.2", "source_file": "التطوير والتعلم Not included__NCGR format__...txt"}
 {"id": "scr:lnd:training", "type": "Screen", "name_ar": "طلب تدريب", "screen_type": "request_form"}
 {"id": "scr:lnd:scholarship", "type": "Screen", "name_ar": "طلب ابتعاث", "screen_type": "request_form"}
 {"id": "int:learning-dev:jics", "type": "IntegrationPoint", "name": "تكامل مع النظام المركزي", "direction": "outbound"}
 {"id": "int:learning-dev:nic", "type": "IntegrationPoint", "name": "تكامل مع نفاذ", "direction": "outbound"}
 {"id": "int:learning-dev:documentum", "type": "IntegrationPoint", "name": "تكامل مع Documentum", "direction": "outbound"}
-{"id": "svc:eltizam", "type": "Service", "canonical_name_ar": "التزام", "canonical_name_en": "Eltizam - Compliance", "service_domain": "Governance / Data Quality", "maturity_level": "L2", "impact_readiness": "IR-3", "version": "v0.2", "description": "Electronic system for government entities to submit and update their data to HRSD. Measure compliance with data quality standards."}
+{"id": "svc:eltizam", "type": "Service", "canonical_name_ar": "التزام", "canonical_name_en": "Eltizam - Compliance", "service_domain": "Governance / Data Quality", "maturity_level": "L2", "impact_readiness": "IR-3", "version": "v0.2", "description": "نظام إلكتروني للجهات الحكومية لتقديم وتحديث بياناتهم إلى الوزارة. يقيس الامتثال للمتطلبات."}
 {"id": "doc:eltizam-brd", "type": "Document", "canonical_name_ar": "وثيقة رؤية الحل - التزام", "canonical_name_en": "Solution Vision - Eltizam - Compliance", "version": "v0.2", "source_file": "التزام__NCGR format__وثيقة رؤية الحل__...txt"}
 {"id": "scr:eltizam:submit", "type": "Screen", "name_ar": "تقديم البيانات", "screen_type": "form"}
 {"id": "scr:eltizam:dashboard", "type": "Screen", "name_ar": "لوحة الامتثال", "screen_type": "dashboard"}
 {"id": "int:eltizam:jics", "type": "IntegrationPoint", "name": "تكامل مع النظام المركزي", "direction": "outbound"}
 {"id": "int:eltizam:documentum", "type": "IntegrationPoint", "name": "تكامل مع Documentum", "direction": "outbound"}
-{"id": "svc:training-scholarship", "type": "Service", "canonical_name_ar": "التدريب والابتعاث", "canonical_name_en": "Training & Scholarship", "service_domain": "HR / Training", "maturity_level": "L3", "impact_readiness": "IR-3", "version": "v0.2", "description": "Document training, scholarship, and secondment requests electronically for government entities."}
+{"id": "svc:training-scholarship", "type": "Service", "canonical_name_ar": "التدريب والابتعاث", "canonical_name_en": "Training & Scholarship", "service_domain": "HR / Training", "maturity_level": "L3", "impact_readiness": "IR-3", "version": "v0.2", "description": "توثيق طلبات التدريب والابتعاث والندب إلكترونياً للجهات الحكومية."}
 {"id": "doc:training-scholarship-brd", "type": "Document", "canonical_name_ar": "وثيقة رؤية الحل - التدريب والابتعاث", "canonical_name_en": "Solution Vision - Training & Scholarship", "version": "v0.2", "source_file": "التدريب والابتعاث__NCGR format__...txt"}
 {"id": "scr:ts:training", "type": "Screen", "name_ar": "طلب تدريب", "screen_type": "request_form"}
 {"id": "scr:ts:scholarship", "type": "Screen", "name_ar": "طلب ابتعاث", "screen_type": "request_form"}
 {"id": "int:training-scholarship:jics", "type": "IntegrationPoint", "name": "تكامل مع النظام المركزي", "direction": "outbound"}
 {"id": "int:training-scholarship:nic", "type": "IntegrationPoint", "name": "تكامل مع نفاذ", "direction": "outbound"}
 {"id": "int:training-scholarship:documentum", "type": "IntegrationPoint", "name": "تكامل مع Documentum", "direction": "outbound"}
-{"id": "svc:employment-exception", "type": "Service", "canonical_name_ar": "الاستثناء للتوظيف", "canonical_name_en": "Employment Exception", "service_domain": "HR / Recruitment", "maturity_level": "L3", "impact_readiness": "IR-3", "version": "v0.2", "description": "Manage employment exception requests with full approval chain from entity through Technical Committee to senior officials."}
+{"id": "svc:employment-exception", "type": "Service", "canonical_name_ar": "الاستثناء للتوظيف", "canonical_name_en": "Employment Exception", "service_domain": "HR / Recruitment", "maturity_level": "L3", "impact_readiness": "IR-3", "version": "v0.2", "description": "إدارة طلبات استثناء التوظيف مع دورة موافقات كاملة من الجهة عبر اللجنة الفنية إلى اللجنة العليا."}
 {"id": "doc:employment-exception-brd", "type": "Document", "canonical_name_ar": "وثيقة رؤية الحل - الاستثناء للتوظيف", "canonical_name_en": "Solution Vision - Employment Exception", "version": "v0.2", "source_file": "الاستثناء للتوظيف__NCGR formats__...txt"}
 {"id": "int:employment-exception:jics", "type": "IntegrationPoint", "name": "تكامل مع النظام المركزي", "direction": "outbound"}
 {"id": "int:employment-exception:nic", "type": "IntegrationPoint", "name": "تكامل مع نفاذ", "direction": "outbound"}
 {"id": "int:employment-exception:documentum", "type": "IntegrationPoint", "name": "تكامل مع Documentum", "direction": "outbound"}
 {"id": "int:employment-exception:bayan", "type": "IntegrationPoint", "name": "تكامل مع بيان - تحقيق الخدمة", "direction": "outbound"}
-{"id": "svc:crm", "type": "Service", "canonical_name_ar": "إدارة العلاقة التعاقدية", "canonical_name_en": "Contractual Relationship Management", "service_domain": "HR / Contract Management", "maturity_level": "L3", "impact_readiness": "IR-3", "version": "v0.2", "description": "Manage contractual relationship from job offer through contract creation, amendment, and termination."}
+{"id": "svc:crm", "type": "Service", "canonical_name_ar": "إدارة العلاقة التعاقدية", "canonical_name_en": "Contractual Relationship Management", "service_domain": "HR / Contract Management", "maturity_level": "L3", "impact_readiness": "IR-3", "version": "v0.2", "description": "إدارة العلاقات التعاقدية من عرض الوظيفة عبر إنشاء العقد والتعديل والإنهاء."}
 {"id": "doc:crm-brd", "type": "Document", "canonical_name_ar": "وثيقة رؤية الحل - إدارة العلاقة التعاقدية", "canonical_name_en": "Solution Vision - Contractual Relationship Management", "version": "v0.2", "source_file": "ادراة العلاقة التعاقدية__NCGR format__...txt"}
 {"id": "scr:crm:offer", "type": "Screen", "name_ar": "عرض وظيفي", "screen_type": "form"}
 {"id": "scr:crm:contract", "type": "Screen", "name_ar": "إدارة العقد", "screen_type": "management"}
@@ -351,7 +351,7 @@
 {"id": "int:crm:gosi", "type": "IntegrationPoint", "name": "تكامل مع التأمينات الاجتماعية - GOSI", "direction": "outbound"}
 {"id": "ext:sabil", "type": "ExternalSystem", "canonical_name_ar": "سبل - العنوان الوطني"}
 {"id": "int:crm:sabil", "type": "IntegrationPoint", "name": "تكامل مع سبل - العنوان الوطني", "direction": "outbound"}
-{"id": "svc:competency-contractors", "type": "Service", "canonical_name_ar": "تسجيل متعاقدي الكفاءات", "canonical_name_en": "Competency Contractors Registration", "service_domain": "HR / Contracting", "maturity_level": "L3", "impact_readiness": "IR-3", "version": "v0.2", "description": "Register and manage competency contractors for government entities. Handle contracting requests, renewals, and terminations."}
+{"id": "svc:competency-contractors", "type": "Service", "canonical_name_ar": "تسجيل متعاقدي الكفاءات", "canonical_name_en": "Competency Contractors Registration", "service_domain": "HR / Contracting", "maturity_level": "L3", "impact_readiness": "IR-3", "version": "v0.2", "description": "تسجيل وإدارة متعاقدي الكفاءات للجهات الحكومية. معالجة طلبات التعاقد والتجديد والإنهاء."}
 {"id": "doc:competency-contractors-brd", "type": "Document", "canonical_name_ar": "وثيقة رؤية الحل - تسجيل متعاقدي الكفاءات", "canonical_name_en": "Solution Vision - Competency Contractors Registration", "version": "v0.2", "source_file": "تسجيل متعاقدى الكفاءات__Ejada format__تسجيل متعاقدي الكفاءات.txt"}
 {"id": "scr:cc:request", "type": "Screen", "name_ar": "طلب تعاقد", "screen_type": "request_form"}
 {"id": "scr:cc:renewal", "type": "Screen", "name_ar": "طلب تجديد تعاقد", "screen_type": "request_form"}
