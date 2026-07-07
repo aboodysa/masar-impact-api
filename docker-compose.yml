@@ -1,0 +1,37 @@
+version: "3.9"
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: masar-impact-api
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - AUTH_ENABLED=${AUTH_ENABLED:-false}
+      - API_TOKEN=${API_TOKEN:-dev-token}
+      - GRAPH_DIR=/app/data/v0.2
+    volumes:
+      - ../output/v0.2:/app/data/v0.2:ro
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:3000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    networks:
+      - coolify
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.masar-api.rule=Host(`myapi.businessanalystcrew.org`)"
+      - "traefik.http.routers.masar-api.entrypoints=websecure"
+      - "traefik.http.routers.masar-api.tls=true"
+      - "traefik.http.routers.masar-api.tls.certresolver=letsencrypt"
+      - "traefik.http.services.masar-api.loadbalancer.server.port=3000"
+
+networks:
+  coolify:
+    external: true
+    name: coolify

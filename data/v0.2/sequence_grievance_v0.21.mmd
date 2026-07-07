@@ -1,0 +1,55 @@
+sequenceDiagram
+    participant citizen as المتظلم<br/>(Grievant)
+    participant portal as MASAR Portal
+    participant nafath as نفاذ<br/>(NAFATH)
+    participant jics as النظام المركزي<br/>(JICS)
+    participant permissions as الصلاحيات
+    participant doc as Documentum
+    participant ministrySpec as مختص الوزارة<br/>(Ministry Specialist)
+    participant ministryMgr as مدير الوزارة<br/>(Ministry Manager)
+    participant compDept as الادارة المختصة<br/>(Competent Dept)
+    participant extSpec as مختص الجهة<br/>(Ext. Entity Specialist)
+    participant extMgr as مدير الجهة<br/>(Ext. Entity Manager)
+
+    Note over citizen,extMgr: المرحلة 1: تقديم التظلم (Citizen Initiation)
+
+    citizen->>portal: تقديم تظلم
+    portal->>nafath: استعلام عن بيانات المتظلم الشخصية
+    nafath-->>portal: بيانات الهوية
+    portal->>jics: استعلام عن بيانات المتظلم الوظيفية
+    jics-->>portal: البيانات الوظيفية
+    portal->>permissions: التحقق من صلاحية التقديم
+    permissions-->>portal: مسموح
+    portal->>doc: رفع المرفقات
+    doc-->>portal: تأكيد الرفع
+    portal-->>citizen: تم تقديم الطلب بنجاح
+
+    Note over citizen,extMgr: المرحلة 2: معالجة الطلب (Ministry Processing)
+
+    portal->>ministrySpec: إشعار بطلب تظلم جديد
+    ministrySpec->>portal: استعراض الطلب
+    ministrySpec->>jics: التحقق من البيانات الوظيفية
+    jics-->>ministrySpec: بيانات محدثة
+    ministrySpec->>doc: استعراض المرفقات
+    doc-->>ministrySpec: المرفقات
+
+    alt إسناد لجهة خارجية
+        ministrySpec->>ministryMgr: طلب إسناد
+        ministryMgr->>portal: إسناد الطلب لجهة خارجية
+        portal->>extSpec: إشعار بطلب مسند
+        extSpec->>portal: معالجة التظلم
+        extSpec->>extMgr: طلب اعتماد الرد
+        extMgr-->>extSpec: اعتماد الرد
+        extSpec-->>portal: الرد المعتمد
+    else إسناد للإدارة المختصة
+        ministrySpec->>ministryMgr: طلب إسناد
+        ministryMgr->>portal: إسناد للإدارة المختصة
+        portal->>compDept: إشعار بطلب
+        compDept->>portal: إبداء الرأي
+    end
+
+    ministryMgr->>portal: اعتماد الرد النهائي
+    portal-->>citizen: إشعار بالرد النهائي
+    citizen->>portal: متابعة حالة الطلب
+
+    Note over portal: حالات الطلب: تحت الإجراء ← قيد الدراسة ← مسند ← بانتظار الرد ← منتهي

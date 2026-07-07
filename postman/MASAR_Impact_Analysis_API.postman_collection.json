@@ -1,0 +1,1098 @@
+{
+  "info": {
+    "name": "MASAR Impact Analysis API",
+    "description": "MASAR Impact Analysis API — تحليل تأثير خدمات مسار\n\nAll authenticated endpoints require `Authorization: Bearer <token>` header.\nThe `/health` endpoint is public (no auth required).\n\nBase URL: https://myapi.businessanalystcrew.org",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "masar-impact-api"
+  },
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "cf11c285b4ecae1a4436230b69dcfd84fe8060c9d56e060ad7ae1fb83621b8d7",
+        "type": "string"
+      }
+    ]
+  },
+  "item": [
+    {
+      "name": "Health",
+      "item": [
+        {
+          "name": "Health check — does not require authentication [GET]",
+          "description": "Health check — does not require authentication",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://myapi.businessanalystcrew.org/health",
+              "protocol": "https",
+              "host": [
+                "myapi",
+                "businessanalystcrew",
+                "org"
+              ],
+              "path": [
+                "health"
+              ],
+              "query": [],
+              "variable": []
+            }
+          },
+          "response": [],
+          "tags": [
+            "Health"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Graph",
+      "item": [
+        {
+          "name": "Graph statistics — counts per node type [GET]",
+          "description": "Graph statistics — counts per node type",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text",
+                "description": "API authentication token"
+              }
+            ],
+            "url": {
+              "raw": "https://myapi.businessanalystcrew.org/api/v1/graph/stats",
+              "protocol": "https",
+              "host": [
+                "myapi",
+                "businessanalystcrew",
+                "org"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "graph",
+                "stats"
+              ],
+              "query": [],
+              "variable": []
+            }
+          },
+          "response": [],
+          "tags": [
+            "Graph"
+          ]
+        },
+        {
+          "name": "List graph nodes, optionally filtered by type [GET]",
+          "description": "List graph nodes, optionally filtered by type",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text",
+                "description": "API authentication token"
+              }
+            ],
+            "url": {
+              "raw": "https://myapi.businessanalystcrew.org/api/v1/graph/nodes",
+              "protocol": "https",
+              "host": [
+                "myapi",
+                "businessanalystcrew",
+                "org"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "graph",
+                "nodes"
+              ],
+              "query": [
+                {
+                  "key": "type",
+                  "value": "Screen",
+                  "description": "Filter by node type",
+                  "type": "text"
+                },
+                {
+                  "key": "limit",
+                  "value": "20",
+                  "description": "Items per page (max 100)",
+                  "type": "text"
+                },
+                {
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number",
+                  "type": "text"
+                }
+              ],
+              "variable": []
+            }
+          },
+          "response": [],
+          "tags": [
+            "Graph"
+          ]
+        },
+        {
+          "name": "Get a single graph node by ID [GET]",
+          "description": "Get a single graph node by ID",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text",
+                "description": "API authentication token"
+              }
+            ],
+            "url": {
+              "raw": "https://myapi.businessanalystcrew.org/api/v1/graph/nodes/:id",
+              "protocol": "https",
+              "host": [
+                "myapi",
+                "businessanalystcrew",
+                "org"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "graph",
+                "nodes",
+                "{id}"
+              ],
+              "query": [],
+              "variable": []
+            }
+          },
+          "response": [],
+          "tags": [
+            "Graph"
+          ]
+        },
+        {
+          "name": "List graph edges, optionally filtered by type [GET]",
+          "description": "List graph edges, optionally filtered by type",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text",
+                "description": "API authentication token"
+              }
+            ],
+            "url": {
+              "raw": "https://myapi.businessanalystcrew.org/api/v1/graph/edges",
+              "protocol": "https",
+              "host": [
+                "myapi",
+                "businessanalystcrew",
+                "org"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "graph",
+                "edges"
+              ],
+              "query": [
+                {
+                  "key": "type",
+                  "value": "DEPENDS_ON",
+                  "description": "Filter by edge type",
+                  "type": "text"
+                },
+                {
+                  "key": "limit",
+                  "value": "20",
+                  "description": "Items per page (max 100)",
+                  "type": "text"
+                },
+                {
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number",
+                  "type": "text"
+                }
+              ],
+              "variable": []
+            }
+          },
+          "response": [],
+          "tags": [
+            "Graph"
+          ]
+        },
+        {
+          "name": "Get a single edge by ID [GET]",
+          "description": "Get a single edge by ID",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text",
+                "description": "API authentication token"
+              }
+            ],
+            "url": {
+              "raw": "https://myapi.businessanalystcrew.org/api/v1/graph/edges/:id",
+              "protocol": "https",
+              "host": [
+                "myapi",
+                "businessanalystcrew",
+                "org"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "graph",
+                "edges",
+                "{id}"
+              ],
+              "query": [],
+              "variable": []
+            }
+          },
+          "response": [],
+          "tags": [
+            "Graph"
+          ]
+        },
+        {
+          "name": "List all node types with counts [GET]",
+          "description": "List all node types with counts",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text",
+                "description": "API authentication token"
+              }
+            ],
+            "url": {
+              "raw": "https://myapi.businessanalystcrew.org/api/v1/graph/types",
+              "protocol": "https",
+              "host": [
+                "myapi",
+                "businessanalystcrew",
+                "org"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "graph",
+                "types"
+              ],
+              "query": [],
+              "variable": []
+            }
+          },
+          "response": [],
+          "tags": [
+            "Graph"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Impact",
+      "item": [
+        {
+          "name": "Analyze impact of a change request on services, screens, and integrations [POST]",
+          "description": "Analyze impact of a change request on services, screens, and integrations",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text",
+                "description": "API authentication token"
+              }
+            ],
+            "url": {
+              "raw": "https://myapi.businessanalystcrew.org/api/v1/impact/analyze",
+              "protocol": "https",
+              "host": [
+                "myapi",
+                "businessanalystcrew",
+                "org"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "impact",
+                "analyze"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"changeRequest\": {\n    \"title\": \"تعديل شاشة إنهاء التعاقد\",\n    \"description\": \"إضافة إدخال يدوي لفئة الوظيفة\",\n    \"targetService\": \"svc:wafed\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "tags": [
+            "Impact"
+          ]
+        },
+        {
+          "name": "Create a new async impact analysis job [POST]",
+          "description": "Create a new async impact analysis job",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text",
+                "description": "API authentication token"
+              }
+            ],
+            "url": {
+              "raw": "https://myapi.businessanalystcrew.org/api/v1/impact/jobs",
+              "protocol": "https",
+              "host": [
+                "myapi",
+                "businessanalystcrew",
+                "org"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "impact",
+                "jobs"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"تحليل تأثير تعديل وافد\",\n  \"description\": \"تغيير شاشة إنهاء التعاقد\",\n  \"targetService\": \"svc:wafed\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "tags": [
+            "Impact"
+          ]
+        },
+        {
+          "name": "Search across all graph nodes by name or description [GET]",
+          "description": "Search across all graph nodes by name or description",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text",
+                "description": "API authentication token"
+              }
+            ],
+            "url": {
+              "raw": "https://myapi.businessanalystcrew.org/api/v1/impact/search",
+              "protocol": "https",
+              "host": [
+                "myapi",
+                "businessanalystcrew",
+                "org"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "impact",
+                "search"
+              ],
+              "query": [
+                {
+                  "key": "q",
+                  "value": "ترقيات",
+                  "description": "Search query (min 2 chars)",
+                  "type": "text"
+                }
+              ],
+              "variable": []
+            }
+          },
+          "response": [],
+          "tags": [
+            "Impact"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Jobs",
+      "item": [
+        {
+          "name": "List all async impact analysis jobs [GET]",
+          "description": "List all async impact analysis jobs",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text",
+                "description": "API authentication token"
+              }
+            ],
+            "url": {
+              "raw": "https://myapi.businessanalystcrew.org/api/v1/impact/jobs",
+              "protocol": "https",
+              "host": [
+                "myapi",
+                "businessanalystcrew",
+                "org"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "impact",
+                "jobs"
+              ],
+              "query": [
+                {
+                  "key": "limit",
+                  "value": "20",
+                  "description": "Items per page (max 100)",
+                  "type": "text"
+                },
+                {
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number",
+                  "type": "text"
+                }
+              ],
+              "variable": []
+            }
+          },
+          "response": [],
+          "tags": [
+            "Jobs"
+          ]
+        },
+        {
+          "name": "Get job status and details [GET]",
+          "description": "Get job status and details",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text",
+                "description": "API authentication token"
+              }
+            ],
+            "url": {
+              "raw": "https://myapi.businessanalystcrew.org/api/v1/impact/jobs/:jobId",
+              "protocol": "https",
+              "host": [
+                "myapi",
+                "businessanalystcrew",
+                "org"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "impact",
+                "jobs",
+                "{jobId}"
+              ],
+              "query": [],
+              "variable": []
+            }
+          },
+          "response": [],
+          "tags": [
+            "Jobs"
+          ]
+        },
+        {
+          "name": "Get the result of a completed job [GET]",
+          "description": "Get the result of a completed job",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text",
+                "description": "API authentication token"
+              }
+            ],
+            "url": {
+              "raw": "https://myapi.businessanalystcrew.org/api/v1/impact/jobs/:jobId/result",
+              "protocol": "https",
+              "host": [
+                "myapi",
+                "businessanalystcrew",
+                "org"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "impact",
+                "jobs",
+                "{jobId}",
+                "result"
+              ],
+              "query": [],
+              "variable": []
+            }
+          },
+          "response": [],
+          "tags": [
+            "Jobs"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Services",
+      "item": [
+        {
+          "name": "Service maturity index with scoring and domain breakdown [GET]",
+          "description": "Service maturity index with scoring and domain breakdown",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text",
+                "description": "API authentication token"
+              }
+            ],
+            "url": {
+              "raw": "https://myapi.businessanalystcrew.org/api/v1/services/maturity-index",
+              "protocol": "https",
+              "host": [
+                "myapi",
+                "businessanalystcrew",
+                "org"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "services",
+                "maturity-index"
+              ],
+              "query": [],
+              "variable": []
+            }
+          },
+          "response": [],
+          "tags": [
+            "Services"
+          ]
+        },
+        {
+          "name": "Maturity index as a Mermaid flowchart diagram [GET]",
+          "description": "Maturity index as a Mermaid flowchart diagram",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text",
+                "description": "API authentication token"
+              }
+            ],
+            "url": {
+              "raw": "https://myapi.businessanalystcrew.org/api/v1/services/maturity-index/mermaid",
+              "protocol": "https",
+              "host": [
+                "myapi",
+                "businessanalystcrew",
+                "org"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "services",
+                "maturity-index",
+                "mermaid"
+              ],
+              "query": [],
+              "variable": []
+            }
+          },
+          "response": [],
+          "tags": [
+            "Services"
+          ]
+        },
+        {
+          "name": "List all services [GET]",
+          "description": "List all services",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text",
+                "description": "API authentication token"
+              }
+            ],
+            "url": {
+              "raw": "https://myapi.businessanalystcrew.org/api/v1/services",
+              "protocol": "https",
+              "host": [
+                "myapi",
+                "businessanalystcrew",
+                "org"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "services"
+              ],
+              "query": [
+                {
+                  "key": "limit",
+                  "value": "20",
+                  "description": "Items per page (max 100)",
+                  "type": "text"
+                },
+                {
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number",
+                  "type": "text"
+                }
+              ],
+              "variable": []
+            }
+          },
+          "response": [],
+          "tags": [
+            "Services"
+          ]
+        },
+        {
+          "name": "Get service detail with screens, roles, integrations, dependencies, documents [GET]",
+          "description": "Get service detail with screens, roles, integrations, dependencies, documents",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text",
+                "description": "API authentication token"
+              }
+            ],
+            "url": {
+              "raw": "https://myapi.businessanalystcrew.org/api/v1/services/:id",
+              "protocol": "https",
+              "host": [
+                "myapi",
+                "businessanalystcrew",
+                "org"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "services",
+                "{id}"
+              ],
+              "query": [],
+              "variable": []
+            }
+          },
+          "response": [],
+          "tags": [
+            "Services"
+          ]
+        },
+        {
+          "name": "Get service dependencies (dependsOn + dependedBy) [GET]",
+          "description": "Get service dependencies (dependsOn + dependedBy)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text",
+                "description": "API authentication token"
+              }
+            ],
+            "url": {
+              "raw": "https://myapi.businessanalystcrew.org/api/v1/services/:id/dependencies",
+              "protocol": "https",
+              "host": [
+                "myapi",
+                "businessanalystcrew",
+                "org"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "services",
+                "{id}",
+                "dependencies"
+              ],
+              "query": [],
+              "variable": []
+            }
+          },
+          "response": [],
+          "tags": [
+            "Services"
+          ]
+        },
+        {
+          "name": "Get impact path — screens, fields, actions, and integrations for a service [GET]",
+          "description": "Get impact path — screens, fields, actions, and integrations for a service",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text",
+                "description": "API authentication token"
+              }
+            ],
+            "url": {
+              "raw": "https://myapi.businessanalystcrew.org/api/v1/services/:id/impact-path",
+              "protocol": "https",
+              "host": [
+                "myapi",
+                "businessanalystcrew",
+                "org"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "services",
+                "{id}",
+                "impact-path"
+              ],
+              "query": [],
+              "variable": []
+            }
+          },
+          "response": [],
+          "tags": [
+            "Services"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Mermaid",
+      "item": [
+        {
+          "name": "Generate Mermaid architecture diagram for a service [GET]",
+          "description": "Generate Mermaid architecture diagram for a service",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text",
+                "description": "API authentication token"
+              }
+            ],
+            "url": {
+              "raw": "https://myapi.businessanalystcrew.org/api/v1/mermaid/service/:id",
+              "protocol": "https",
+              "host": [
+                "myapi",
+                "businessanalystcrew",
+                "org"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "mermaid",
+                "service",
+                "{id}"
+              ],
+              "query": [],
+              "variable": []
+            }
+          },
+          "response": [],
+          "tags": [
+            "Mermaid"
+          ]
+        },
+        {
+          "name": "Generate Mermaid dependency diagram for a service [GET]",
+          "description": "Generate Mermaid dependency diagram for a service",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text",
+                "description": "API authentication token"
+              }
+            ],
+            "url": {
+              "raw": "https://myapi.businessanalystcrew.org/api/v1/mermaid/dependencies/:id",
+              "protocol": "https",
+              "host": [
+                "myapi",
+                "businessanalystcrew",
+                "org"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "mermaid",
+                "dependencies",
+                "{id}"
+              ],
+              "query": [],
+              "variable": []
+            }
+          },
+          "response": [],
+          "tags": [
+            "Mermaid"
+          ]
+        },
+        {
+          "name": "Search and visualize matching nodes as Mermaid diagram [GET]",
+          "description": "Search and visualize matching nodes as Mermaid diagram",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text",
+                "description": "API authentication token"
+              }
+            ],
+            "url": {
+              "raw": "https://myapi.businessanalystcrew.org/api/v1/mermaid/search",
+              "protocol": "https",
+              "host": [
+                "myapi",
+                "businessanalystcrew",
+                "org"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "mermaid",
+                "search"
+              ],
+              "query": [
+                {
+                  "key": "q",
+                  "value": "ترقيات",
+                  "description": "",
+                  "type": "text"
+                }
+              ],
+              "variable": []
+            }
+          },
+          "response": [],
+          "tags": [
+            "Mermaid"
+          ]
+        },
+        {
+          "name": "Analyze change impact and return Mermaid diagram [POST]",
+          "description": "Analyze change impact and return Mermaid diagram",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text",
+                "description": "API authentication token"
+              }
+            ],
+            "url": {
+              "raw": "https://myapi.businessanalystcrew.org/api/v1/mermaid/analyze",
+              "protocol": "https",
+              "host": [
+                "myapi",
+                "businessanalystcrew",
+                "org"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "mermaid",
+                "analyze"
+              ],
+              "query": [],
+              "variable": []
+            }
+          },
+          "response": [],
+          "tags": [
+            "Mermaid"
+          ]
+        },
+        {
+          "name": "Full MASAR service graph as Mermaid diagram [GET]",
+          "description": "Full MASAR service graph as Mermaid diagram",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text",
+                "description": "API authentication token"
+              }
+            ],
+            "url": {
+              "raw": "https://myapi.businessanalystcrew.org/api/v1/mermaid/explore",
+              "protocol": "https",
+              "host": [
+                "myapi",
+                "businessanalystcrew",
+                "org"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "mermaid",
+                "explore"
+              ],
+              "query": [],
+              "variable": []
+            }
+          },
+          "response": [],
+          "tags": [
+            "Mermaid"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "External Systems",
+      "item": [
+        {
+          "name": "List all external systems with integration counts [GET]",
+          "description": "List all external systems with integration counts",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text",
+                "description": "API authentication token"
+              }
+            ],
+            "url": {
+              "raw": "https://myapi.businessanalystcrew.org/api/v1/external-systems",
+              "protocol": "https",
+              "host": [
+                "myapi",
+                "businessanalystcrew",
+                "org"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "external-systems"
+              ],
+              "query": [
+                {
+                  "key": "limit",
+                  "value": "20",
+                  "description": "Items per page (max 100)",
+                  "type": "text"
+                },
+                {
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number",
+                  "type": "text"
+                }
+              ],
+              "variable": []
+            }
+          },
+          "response": [],
+          "tags": [
+            "External Systems"
+          ]
+        },
+        {
+          "name": "Get external system detail with connected services and integrations [GET]",
+          "description": "Get external system detail with connected services and integrations",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text",
+                "description": "API authentication token"
+              }
+            ],
+            "url": {
+              "raw": "https://myapi.businessanalystcrew.org/api/v1/external-systems/:id",
+              "protocol": "https",
+              "host": [
+                "myapi",
+                "businessanalystcrew",
+                "org"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "external-systems",
+                "{id}"
+              ],
+              "query": [],
+              "variable": []
+            }
+          },
+          "response": [],
+          "tags": [
+            "External Systems"
+          ]
+        }
+      ]
+    }
+  ]
+}
