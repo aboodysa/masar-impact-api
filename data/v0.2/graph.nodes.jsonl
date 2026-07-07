@@ -34,7 +34,6 @@
 {"id": "ext:camunda", "type": "ExternalSystem", "canonical_name_ar": "Camunda", "canonical_name_en": "Camunda Workflow Engine", "system_type": "Workflow Engine", "confidence": 0.9}
 {"id": "ext:jadara", "type": "ExternalSystem", "canonical_name_ar": "جدارة", "canonical_name_en": "JADARA System", "system_type": "Recruitment Platform", "confidence": 0.85}
 {"id": "ext:gdp", "type": "ExternalSystem", "canonical_name_ar": "الجوازات", "canonical_name_en": "General Directorate of Passports", "system_type": "Government Entity", "confidence": 0.85}
-{"id": "ext:eltizam", "type": "ExternalSystem", "canonical_name_ar": "التزام", "canonical_name_en": "ELTIZAM Platform", "system_type": "Compliance Platform", "confidence": 0.85}
 {"id": "ext:qg", "type": "ExternalSystem", "canonical_name_ar": "دليل المؤهلات", "canonical_name_en": "Qualifications Guide", "system_type": "Reference Data", "confidence": 0.85}
 {"id": "bo:contract", "type": "BusinessObject", "canonical_name_ar": "التعاقد", "canonical_name_en": "Contract / Framework Agreement", "aliases": ["Contract", "تعاقد", "Framework Agreement"], "object_type": "Agreement", "key_identifiers": ["Contract ID", "Employee ID"], "source_service": "svc:wafed", "confidence": 0.9}
 {"id": "bo:employee", "type": "BusinessObject", "canonical_name_ar": "الموظف", "canonical_name_en": "Employee", "aliases": ["Employee", "موظف", "Contractor"], "object_type": "Person", "key_identifiers": ["POINum", "Employee ID", "National ID"], "source_service": "svc:jics", "confidence": 0.92}
@@ -191,7 +190,6 @@
 {"id": "int:bayanti:jics", "type": "IntegrationPoint", "name": "تكامل مع JICS", "direction": "outbound"}
 {"id": "int:bayanti:documentum", "type": "IntegrationPoint", "name": "تكامل مع Documentum", "direction": "outbound"}
 {"id": "int:bayanti:nic", "type": "IntegrationPoint", "name": "تكامل مع NIC", "direction": "outbound"}
-{"id": "ext:tawtheeq", "type": "ExternalSystem", "canonical_name_ar": "توثيق"}
 {"id": "int:bayanti:tawtheeq", "type": "IntegrationPoint", "name": "تكامل مع توثيق", "direction": "outbound"}
 {"id": "svc:complaints", "type": "Service", "canonical_name_ar": "الشكاوى", "canonical_name_en": "Complaints", "service_domain": "HR / Complaints", "maturity_level": "L3", "impact_readiness": "IR-3", "version": "v0.2", "description": "Manage complaint requests from government employees. Full lifecycle from creation through specialist handling, governmental entity review, and final approval."}
 {"id": "doc:complaints-brd", "type": "Document", "canonical_name_ar": "وثيقة رؤية الحل - الشكاوى", "canonical_name_en": "Solution Vision - Complaints", "version": "v0.2", "source_file": "SAD Doc-Business view__Complaints__Complaints SAD.txt"}
@@ -316,7 +314,6 @@
 {"id": "int:cv:jics", "type": "IntegrationPoint", "name": "تكامل مع النظام المركزي", "direction": "outbound"}
 {"id": "int:cv:nic", "type": "IntegrationPoint", "name": "تكامل مع نفاذ", "direction": "outbound"}
 {"id": "int:cv:documentum", "type": "IntegrationPoint", "name": "تكامل مع Documentum", "direction": "outbound"}
-{"id": "ext:transfer", "type": "ExternalSystem", "canonical_name_ar": "خدمة النقل"}
 {"id": "int:cv:transfer", "type": "IntegrationPoint", "name": "تكامل مع خدمة النقل", "direction": "outbound"}
 {"id": "svc:learning-dev", "type": "Service", "canonical_name_ar": "التطوير والتعلم", "canonical_name_en": "Learning & Development", "service_domain": "HR / Training", "maturity_level": "L2", "impact_readiness": "IR-3", "version": "v0.2", "description": "Manage all learning and development services: training, scholarships, and secondments for government employees."}
 {"id": "doc:learning-dev-brd", "type": "Document", "canonical_name_ar": "وثيقة رؤية الحل - التطوير والتعلم", "canonical_name_en": "Solution Vision - Learning & Development", "version": "v0.2", "source_file": "التطوير والتعلم Not included__NCGR format__...txt"}
@@ -343,7 +340,6 @@
 {"id": "int:employment-exception:jics", "type": "IntegrationPoint", "name": "تكامل مع النظام المركزي", "direction": "outbound"}
 {"id": "int:employment-exception:nic", "type": "IntegrationPoint", "name": "تكامل مع نفاذ", "direction": "outbound"}
 {"id": "int:employment-exception:documentum", "type": "IntegrationPoint", "name": "تكامل مع Documentum", "direction": "outbound"}
-{"id": "ext:bayan", "type": "ExternalSystem", "canonical_name_ar": "بيان - تحقيق الخدمة"}
 {"id": "int:employment-exception:bayan", "type": "IntegrationPoint", "name": "تكامل مع بيان - تحقيق الخدمة", "direction": "outbound"}
 {"id": "svc:crm", "type": "Service", "canonical_name_ar": "إدارة العلاقة التعاقدية", "canonical_name_en": "Contractual Relationship Management", "service_domain": "HR / Contract Management", "maturity_level": "L3", "impact_readiness": "IR-3", "version": "v0.2", "description": "Manage contractual relationship from job offer through contract creation, amendment, and termination."}
 {"id": "doc:crm-brd", "type": "Document", "canonical_name_ar": "وثيقة رؤية الحل - إدارة العلاقة التعاقدية", "canonical_name_en": "Solution Vision - Contractual Relationship Management", "version": "v0.2", "source_file": "ادراة العلاقة التعاقدية__NCGR format__...txt"}
