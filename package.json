@@ -11,14 +11,21 @@
     "start:prod": "node dist/main"
   },
   "dependencies": {
+    "@nestjs/bullmq": "^11.0.4",
     "@nestjs/common": "^11.0.0",
     "@nestjs/core": "^11.0.0",
     "@nestjs/platform-express": "^11.0.0",
+    "@nestjs/platform-socket.io": "^11.1.27",
     "@nestjs/swagger": "^11.4.5",
+    "@nestjs/websockets": "^11.1.27",
+    "bullmq": "^5.79.3",
+    "dotenv": "^17.4.2",
     "helmet": "^8.0.0",
+    "ioredis": "^5.11.1",
     "openai": "^6.45.0",
     "reflect-metadata": "^0.2.2",
     "rxjs": "^7.8.1",
+    "socket.io": "^4.8.3",
     "swagger-ui-express": "^5.0.1",
     "uuid": "^11.0.0"
   },

@@ -60,13 +60,20 @@ export class JobsService {
     try {
       const { ImpactService } = await import('../impact/impact.service');
       const impactService = new ImpactService(this.graph);
-      const result = impactService.analyze({
-        title: job.payload.title,
-        description: job.payload.description,
-        targetService: job.payload.targetService,
-      });
+      const useAI = (job.payload as any).ai === true;
+      const result = useAI
+        ? await impactService.analyzeWithAI({
+            title: job.payload.title,
+            description: job.payload.description,
+            targetService: job.payload.targetService,
+          })
+        : impactService.analyze({
+            title: job.payload.title,
+            description: job.payload.description,
+            targetService: job.payload.targetService,
+          });
       job.status = 'completed';
-      job.result = result;
+      job.result = { ...result, ai: useAI };
       job.resultUrl = `/api/v1/impact/jobs/${job.jobId}/result`;
     } catch (err: any) {
       this.logger.error(`Job ${job.jobId} failed: ${err.message}`);

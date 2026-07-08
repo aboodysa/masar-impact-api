@@ -1,6 +1,7 @@
 import { Controller, Get, Param, Query, DefaultValuePipe, ParseIntPipe } from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiParam, ApiQuery, ApiResponse, ApiBearerAuth } from '@nestjs/swagger';
 import { JobsService } from './jobs.service';
+import { JobsQueueService } from './jobs-queue.service';
 import { paginate } from '../common/dto/api-response.dto';
 import { JobListResponse, JobDetailResponse, JobResultResponse } from './jobs.dto';
 
@@ -8,7 +9,10 @@ import { JobListResponse, JobDetailResponse, JobResultResponse } from './jobs.dt
 @ApiBearerAuth()
 @Controller('api/v1/impact/jobs')
 export class JobsController {
-  constructor(private readonly jobsService: JobsService) {}
+  constructor(
+    private readonly jobsService: JobsService,
+    private readonly jobsQueue: JobsQueueService,
+  ) {}
 
   @Get()
   @ApiOperation({ summary: 'List all async impact analysis jobs' })
@@ -42,13 +46,15 @@ export class JobsController {
   }
 
   @Get(':jobId/result')
-  @ApiOperation({ summary: 'Get the result of a completed job' })
+  @ApiOperation({ summary: 'Get the result of a completed job (checks both in-memory and BullMQ)' })
   @ApiParam({ name: 'jobId', example: 'job-abc123' })
   @ApiResponse({ status: 200, type: JobResultResponse })
   @ApiResponse({ status: 404, description: 'Job not found' })
-  getResult(@Param('jobId') jobId: string) {
-    const result = this.jobsService.getResult(jobId);
-    if (!result) return { error: 'Job not found' };
-    return result;
+  async getResult(@Param('jobId') jobId: string) {
+    const result = await this.jobsQueue.getResult(jobId);
+    if (result) return result;
+    const memoryResult = this.jobsService.getResult(jobId);
+    if (!memoryResult) return { error: 'Job not found' };
+    return memoryResult;
   }
 }

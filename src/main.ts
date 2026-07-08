@@ -1,6 +1,8 @@
+import 'dotenv/config';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { IoAdapter } from '@nestjs/platform-socket.io';
 import helmet from 'helmet';
 
 async function bootstrap() {
@@ -8,6 +10,7 @@ async function bootstrap() {
     logger: ['log', 'error', 'warn', 'debug', 'verbose'],
   });
 
+  app.useWebSocketAdapter(new IoAdapter(app));
   app.use(helmet());
   app.enableCors();
 

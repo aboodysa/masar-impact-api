@@ -142,7 +142,8 @@ export class ServicesController {
     const roles = this.graph.getServiceRoles(service.id);
     const integrations = this.graph.getServiceIntegrations(service.id);
     const deps = this.graph.getServiceDependencies(service.id);
-    const documents = this.graph.getIncoming(service.id, 'DOCUMENTS')
+    const docEdges = this.graph.getIncoming(service.id, 'DOCUMENTS');
+    const documents = docEdges
       .map(e => this.graph.getNode(e.source_id))
       .filter((n): n is NonNullable<typeof n> => n !== undefined);
 
@@ -159,10 +160,13 @@ export class ServicesController {
         dependsOn: deps.dependsOn.map(d => ({ id: d.id, name: (d as any).canonical_name_ar })),
         dependedBy: deps.dependedBy.map(d => ({ id: d.id, name: (d as any).canonical_name_ar })),
       },
-      documents: documents.map(d => ({
+      documents: documents.map((d, i) => ({
         id: d.id,
         name: (d as any).canonical_name_ar || (d as any).canonical_name_en,
         version: (d as any).version,
+        evidence: (docEdges[i] as any).evidence_ids
+          ?.map((eid: string) => this.graph.getEvidence(eid))
+          .filter(Boolean) || [],
       })),
     };
   }

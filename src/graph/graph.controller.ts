@@ -98,4 +98,35 @@ export class GraphController {
     const types = [...new Set(nodes.map(n => n.type))].sort();
     return { node_types: types.map(t => ({ type: t, count: nodes.filter(n => n.type === t).length })) };
   }
+
+  @Get('evidence')
+  @ApiOperation({ summary: 'List all evidence spans' })
+  @ApiQuery({ name: 'node_id', required: false, description: 'Filter by node ID (returns evidence for edges connected to this node)' })
+  @ApiResponse({ status: 200 })
+  listEvidence(@Query('node_id') nodeId?: string) {
+    if (nodeId) {
+      const edges = this.graph.getAllEdges().filter(e =>
+        e.source_id === nodeId || e.target_id === nodeId
+      );
+      const ids = new Set<string>();
+      for (const e of edges) {
+        if ((e as any).evidence_ids) {
+          for (const evId of (e as any).evidence_ids) ids.add(evId);
+        }
+      }
+      const evidence = [...ids].map(id => this.graph.getEvidence(id)).filter(Boolean);
+      return { node_id: nodeId, total: evidence.length, evidence };
+    }
+    return { total: 0, evidence: [] };
+  }
+
+  @Get('evidence/:id')
+  @ApiOperation({ summary: 'Get a single evidence span by ID' })
+  @ApiResponse({ status: 200 })
+  @ApiResponse({ status: 404, description: 'Not found' })
+  getEvidence(@Param('id') id: string) {
+    const ev = this.graph.getEvidence(id);
+    if (!ev) return { error: 'Evidence not found' };
+    return ev;
+  }
 }

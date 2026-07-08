@@ -116,9 +116,13 @@ export class GraphRepository implements OnModuleInit {
       const ar = (s as any).canonical_name_ar;
       const en = (s as any).canonical_name_en;
       const aliases = (s as any).aliases as string[] | undefined;
-      return (ar && ar.includes(query)) ||
-        (en && en.toLowerCase().includes(q)) ||
-        (aliases && aliases.some(a => a.toLowerCase().includes(q)));
+      const matchAr = ar && (ar.includes(query) || query.includes(ar));
+      const matchEn = en && (en.toLowerCase().includes(q) || q.includes(en.toLowerCase()));
+      const matchAlias = aliases && aliases.some(a => {
+        const al = a.toLowerCase();
+        return al.includes(q) || q.includes(al);
+      });
+      return matchAr || matchEn || matchAlias;
     });
   }
 
